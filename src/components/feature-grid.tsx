@@ -52,7 +52,7 @@ export function FeatureGrid() {
           </p>
         </div>
 
-        <div className="grid-auto three">
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {items.map((item) => {
             const Icon = item.icon;
             return (

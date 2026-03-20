@@ -13,7 +13,7 @@ export function ProtocolSection() {
   return (
     <section id="protocol" className="section-spacing">
       <div className="container">
-        <div className="card grid gap-12 p-10 md:p-12 lg:grid-cols-[1fr_.9fr]">
+        <div className="card grid gap-8 p-6 md:gap-12 md:p-10 lg:p-12 lg:grid-cols-[1fr_.9fr]">
           <div>
             <div className="eyebrow mb-4">The first protocol</div>
             <h2 className="section-title max-w-2xl">

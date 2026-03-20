@@ -4,7 +4,7 @@ export function Navbar() {
   return (
     <header className="sticky top-0 z-50 border-b border-white/8 bg-[#0f0f0dcc]/80 backdrop-blur-xl">
       <div className="container flex items-center justify-between py-4">
-        <Link href="/" className="text-xl font-bold tracking-[0.18em]">
+        <Link href="/" className="text-lg md:text-xl font-bold tracking-[0.18em]">
           AYNCIENT
         </Link>
 

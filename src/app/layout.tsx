@@ -14,7 +14,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body className="min-w-[320px] overflow-x-hidden">{children}</body>
     </html>
   );
 }

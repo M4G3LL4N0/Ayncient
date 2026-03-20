@@ -39,7 +39,7 @@ export default function QuizPage() {
             ← Back to Home
           </Link>
 
-          <div className="mt-8 card p-8 md:p-10">
+          <div className="mt-6 card p-6 sm:mt-8 sm:p-8 md:p-10">
             <div className="eyebrow mb-4">Your result</div>
             <div className="grid gap-8 lg:grid-cols-[.9fr_1.1fr]">
               <div>
@@ -119,7 +119,7 @@ export default function QuizPage() {
           <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
             <div>
               <div className="eyebrow mb-3">Ayncient Alignment Score</div>
-              <h1 className="text-3xl font-bold tracking-[-0.04em] md:text-5xl">
+              <h1 className="text-2xl font-bold tracking-[-0.04em] sm:text-3xl md:text-5xl">
                 Find out how aligned your life really is.
               </h1>
             </div>
@@ -137,7 +137,7 @@ export default function QuizPage() {
 
           <div className="mt-10 rounded-[24px] border border-white/8 bg-black/20 p-6 md:p-8">
             <div className="subtle text-sm capitalize">{current.category}</div>
-            <h2 className="mt-2 text-2xl font-semibold md:text-3xl">
+            <h2 className="mt-2 text-xl font-semibold sm:text-2xl md:text-3xl">
               {current.title}
             </h2>
 

@@ -28,7 +28,7 @@ export function Waitlist() {
             <input
               type="email"
               placeholder="Enter your email"
-              className="h-14 flex-1 rounded-full border border-white/8 bg-white/4 px-5 outline-none placeholder:text-[#c9b99c]/60"
+              className="h-12 md:h-14 flex-1 rounded-full border border-white/8 bg-white/4 px-4 md:px-5 outline-none placeholder:text-[#c9b99c]/60"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
