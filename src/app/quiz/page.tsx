@@ -112,23 +112,64 @@ export default function QuizPage() {
                   ))}
                 </div>
 
-                <div id="email" className="mt-8 rounded-2xl border border-white/8 bg-white/4 p-5">
-                  <div className="text-base font-semibold">Save your score</div>
+                <div className="mt-8 rounded-[24px] border border-white/8 bg-black/20 p-6">
+                  <div className="text-lg font-semibold">Your Next Step: The 7-Day Reset</div>
                   <p className="subtle mt-2 text-sm leading-7">
-                    Next fast move: connect this form to Supabase and store each
-                    result with an email for onboarding, lifecycle emails, and the
-                    7-Day Reset.
+                    {result.offerHeadline} - Get our proven protocol to rapidly improve:{" "}
+                    {result.recommendations.map(r => r.category).join(", ")}
                   </p>
-                  <form className="mt-4 flex flex-col gap-3 md:flex-row">
-                    <input
-                      type="email"
-                      placeholder="Enter your email"
-                      className="h-12 flex-1 rounded-full border border-white/8 bg-white/4 px-4 outline-none placeholder:text-[#c9b99c]/60"
-                    />
-                    <button type="button" className="btn-primary h-12 px-6">
-                      Save Result
-                    </button>
-                  </form>
+
+                  <div className="mt-6 grid gap-8 md:grid-cols-2">
+                    <div className="space-y-4">
+                      <p className="text-[var(--accent)]">{result.subMessage}</p>
+                      
+                      <form className="space-y-4">
+                        <input
+                          type="email"
+                          placeholder="Your best email"
+                          className="w-full rounded-full border border-white/8 bg-white/4 px-4 py-3 outline-none placeholder:text-[#c9b99c]/60"
+                          required
+                        />
+                        <div className="flex flex-col gap-3 sm:flex-row">
+                          <button type="submit" className="btn-primary flex-1">
+                            {result.ctaPrimary}
+                          </button>
+                          <button type="button" className="btn-secondary flex-1">
+                            {result.ctaSecondary}
+                          </button>
+                        </div>
+                      </form>
+
+                      <p className="text-xs subtle">
+                        By continuing, you agree to our Terms and Privacy Policy.
+                      </p>
+                    </div>
+
+                    <div className="rounded-2xl border border-white/8 bg-white/4 p-5">
+                      <div className="flex items-center gap-3">
+                        <span className="text-2xl">📅</span>
+                        <div className="font-semibold">What's included:</div>
+                      </div>
+                      <ul className="mt-4 space-y-3 text-sm">
+                        <li className="flex items-start gap-2">
+                          <span className="text-[var(--accent)]">✓</span>
+                          Personalized daily protocol PDF
+                        </li>
+                        <li className="flex items-start gap-2">
+                          <span className="text-[var(--accent)]">✓</span>  
+                          Email coaching sequence
+                        </li>
+                        <li className="flex items-start gap-2">
+                          <span className="text-[var(--accent)]">✓</span>
+                          Habit tracking spreadsheet
+                        </li>
+                        <li className="flex items-start gap-2">
+                          <span className="text-[var(--accent)]">✓</span>
+                          Private community access
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>

@@ -273,6 +273,10 @@ export type QuizResult = {
   totalScore: number;
   level: string;
   message: string;
+  subMessage: string;
+  ctaPrimary: string; 
+  ctaSecondary: string;
+  offerHeadline: string;
   categoryScores: Record<string, number>;
   recommendations: Recommendation[];
 };
@@ -335,11 +339,45 @@ export function calculateQuizResult(answers: Record<string, number>): QuizResult
     .slice(0, 3)
     .map(([category]) => recommendations[category]);
 
-  return {
+  const resultsData = {
     totalScore: total,
     level,
     message,
     categoryScores,
     recommendations: weakestCategories,
   };
+
+  if (total <= 39) {
+    return {
+      ...resultsData,
+      subMessage: "Ready for radical change? The 7-Day Reset helps rapidly rebuild foundations.",
+      ctaPrimary: "Start My 7-Day Reset",
+      ctaSecondary: "See All Suggestions", 
+      offerHeadline: "Deep Alignment Bundle (Save 40%)"
+    };
+  } else if (total <= 59) {
+    return {
+      ...resultsData,  
+      subMessage: "Small consistent upgrades create big results. Our beginner protocol helps simplify the process.",
+      ctaPrimary: "Get My Beginner Protocol",
+      ctaSecondary: "Quick Start Tips",
+      offerHeadline: "30-Day Alignment Jumpstart"
+    };
+  } else if (total <= 74) {
+    return {
+      ...resultsData,
+      subMessage: "You're on the right path. Our intermediate program helps optimize further.",
+      ctaPrimary: "Optimize My Habits", 
+      ctaSecondary: "See Advanced Tactics",
+      offerHeadline: "Advanced Alignment Toolkit"
+    };
+  } else {
+    return {
+      ...resultsData,
+      subMessage: "Master level unlocked. Join our community to take it deeper.", 
+      ctaPrimary: "Join Masters Community",
+      ctaSecondary: "Get Coaching",
+      offerHeadline: "1:1 Alignment Coaching"
+    };
+  }
 }
