@@ -7,9 +7,9 @@ export function Waitlist() {
   const [submitted, setSubmitted] = useState(false);
 
   return (
-    <section id="waitlist" className="py-20 md:py-28">
+    <section id="waitlist" className="section-spacing">
       <div className="container">
-        <div className="card p-8 md:p-12">
+        <div className="card p-10 md:p-14">
           <div className="eyebrow mb-4">Early access</div>
           <h2 className="section-title max-w-3xl">Return to human.</h2>
           <p className="subtle mt-5 max-w-2xl text-lg leading-8">

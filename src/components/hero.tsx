@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export function Hero() {
   return (
-    <section className="relative overflow-hidden py-20 md:py-28">
+    <section className="relative overflow-hidden section-spacing">
       <div className="container grid items-center gap-10 lg:grid-cols-[1.15fr_.85fr]">
         <div>
           <div className="eyebrow mb-5">Modern life is unnatural</div>

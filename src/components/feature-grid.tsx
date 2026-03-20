@@ -41,12 +41,12 @@ const items = [
 
 export function FeatureGrid() {
   return (
-    <section id="features" className="py-20 md:py-28">
+    <section id="features" className="section-spacing">
       <div className="container">
-        <div className="mb-10 max-w-3xl">
+        <div className="mb-16 max-w-3xl text-center mx-auto">
           <div className="eyebrow mb-4">What Ayncient does</div>
           <h2 className="section-title">A system for living more naturally.</h2>
-          <p className="subtle mt-5 text-lg leading-8">
+          <p className="section-intro">
             Ayncient combines ancestral principles with modern tools to help you
             improve energy, mood, focus, recovery, and health.
           </p>

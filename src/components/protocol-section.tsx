@@ -11,9 +11,9 @@ const protocol = [
 
 export function ProtocolSection() {
   return (
-    <section id="protocol" className="py-20 md:py-28">
+    <section id="protocol" className="section-spacing">
       <div className="container">
-        <div className="card grid gap-8 p-8 md:p-10 lg:grid-cols-[1fr_.9fr]">
+        <div className="card grid gap-12 p-10 md:p-12 lg:grid-cols-[1fr_.9fr]">
           <div>
             <div className="eyebrow mb-4">The first protocol</div>
             <h2 className="section-title max-w-2xl">

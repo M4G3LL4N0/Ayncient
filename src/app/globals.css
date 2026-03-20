@@ -46,10 +46,38 @@ a {
 }
 
 .section-title {
-  font-size: clamp(2rem, 4vw, 3.75rem);
-  line-height: 0.95;
-  letter-spacing: -0.04em;
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  line-height: 0.92;
+  letter-spacing: -0.05em;
   font-weight: 700;
+  margin-bottom: 1.5rem;
+}
+
+.section-subtitle {
+  font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  font-weight: 500;
+  color: var(--muted);
+  margin-bottom: 2rem;
+}
+
+.section-intro {
+  font-size: 1.125rem;
+  line-height: 1.6;
+  color: var(--muted);
+  max-width: 48rem;
+  margin-bottom: 3rem;
+}
+
+.section-spacing {
+  padding: 6rem 0;
+}
+
+@media (min-width: 768px) {
+  .section-spacing {
+    padding: 8rem 0;
+  }
 }
 
 .eyebrow {
