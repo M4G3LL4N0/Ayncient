@@ -60,9 +60,40 @@ export default function QuizPage() {
                     Save My Score
                   </a>
                 </div>
+
+                <div className="rounded-[24px] border border-white/8 bg-black/20 p-6">
+                  <div className="text-lg font-semibold">Your Personalized Protocol</div>
+                  <p className="subtle mt-2 text-sm leading-7">
+                    Based on your results, here are your top areas for improvement with actionable steps to optimize your alignment:
+                  </p>
+
+                  <div className="mt-6 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+                    {result.recommendations.map((rec) => (
+                      <div key={rec.category} className="rounded-2xl border border-white/8 bg-white/4 p-5">
+                        <div className="flex items-center gap-3">
+                          <span className="text-2xl">{rec.icon}</span>
+                          <div>
+                            <div className="text-sm uppercase subtle">{rec.category}</div>
+                            <div className="text-lg font-semibold">{rec.title}</div>
+                          </div>
+                        </div>
+                        <p className="mt-3 text-sm leading-6 subtle">{rec.description}</p>
+                        <ul className="mt-4 space-y-2">
+                          {rec.actions.map((action) => (
+                            <li key={action} className="flex items-center gap-2 text-sm">
+                              <span className="text-[var(--accent)]">•</span>
+                              {action}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    ))}
+                  </div>
+                </div>
               </div>
 
-              <div className="rounded-[24px] border border-white/8 bg-black/20 p-6">
+              <div className="space-y-8">
+                <div className="rounded-[24px] border border-white/8 bg-black/20 p-6">
                 <div className="text-lg font-semibold">Category Breakdown</div>
                 <div className="mt-6 space-y-5">
                   {Object.entries(result.categoryScores).map(([key, value]) => (

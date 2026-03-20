@@ -138,11 +138,143 @@ export const quizQuestions: QuizQuestion[] = [
   },
 ];
 
+export type Recommendation = {
+  category: string;
+  title: string;
+  description: string;
+  icon: string;
+  actions: string[];
+};
+
+export const recommendations: Record<string, Recommendation> = {
+  sleep: {
+    category: "Sleep",
+    title: "Reclaim Your Nights",
+    description: "Sleep is the foundation of all health. Optimize your circadian rhythm and sleep quality with these steps:",
+    icon: "🌙",
+    actions: [
+      "Set consistent sleep/wake times",
+      "Create a dark, cool sleep environment",
+      "Avoid screens 1 hour before bed",
+      "Try magnesium supplements before sleep"
+    ]
+  },
+  sunlight: {
+    category: "Sunlight",
+    title: "Harness the Power of Light",
+    description: "Morning light is nature's reset button. Use it to energize your day:",
+    icon: "☀️",
+    actions: [
+      "Get 10-30 mins of morning sunlight",
+      "Take walking meetings outdoors",
+      "Use blue light blocking glasses at night",
+      "Position your desk near natural light"
+    ]
+  },
+  movement: {
+    category: "Movement",
+    title: "Move Like Nature Intended",
+    description: "Your body thrives on varied, natural movement. Incorporate these daily:",
+    icon: "🏃‍♂️",
+    actions: [
+      "Take 5-minute movement breaks every hour",
+      "Try barefoot walking on natural surfaces",
+      "Incorporate strength training 3x/week",
+      "Practice mobility exercises daily"
+    ]
+  },
+  food: {
+    category: "Food",
+    title: "Eat Like Your Ancestors",
+    description: "Nourish your body with ancestral wisdom. Focus on:",
+    icon: "🥩",
+    actions: [
+      "Prioritize whole, unprocessed foods",
+      "Eat protein with every meal",
+      "Incorporate fermented foods daily",
+      "Time meals with your circadian rhythm"
+    ]
+  },
+  hydration: {
+    category: "Hydration",
+    title: "Optimize Your Water",
+    description: "Proper hydration is key to cellular function. Improve yours with:",
+    icon: "💧",
+    actions: [
+      "Drink 1 glass of water upon waking",
+      "Add electrolytes to your water",
+      "Monitor urine color throughout the day",
+      "Avoid drinking with meals"
+    ]
+  },
+  stress: {
+    category: "Stress",
+    title: "Master Your Stress",
+    description: "Chronic stress undermines health. Regain control with:",
+    icon: "🧘‍♀️",
+    actions: [
+      "Practice daily breathwork",
+      "Take regular nature breaks",
+      "Establish digital boundaries",
+      "Try adaptogenic herbs like ashwagandha"
+    ]
+  },
+  digital: {
+    category: "Digital",
+    title: "Reclaim Your Attention",
+    description: "Digital overload drains your energy. Create balance with:",
+    icon: "📱",
+    actions: [
+      "Set app time limits",
+      "Create phone-free zones",
+      "Practice digital sunset 1 hour before bed",
+      "Schedule tech-free weekends"
+    ]
+  },
+  nature: {
+    category: "Nature",
+    title: "Reconnect with Nature",
+    description: "Nature is our original habitat. Reconnect daily with:",
+    icon: "🌳",
+    actions: [
+      "Take daily walks in green spaces",
+      "Practice earthing (barefoot on grass)",
+      "Bring plants into your living space",
+      "Try forest bathing weekly"
+    ]
+  },
+  social: {
+    category: "Social",
+    title: "Deepen Your Connections",
+    description: "Human connection is vital for wellbeing. Strengthen yours with:",
+    icon: "👥",
+    actions: [
+      "Schedule regular quality time with loved ones",
+      "Practice active listening",
+      "Join community groups",
+      "Express gratitude daily"
+    ]
+  },
+  rhythm: {
+    category: "Rhythm",
+    title: "Sync with Nature's Cycles",
+    description: "Your body thrives on consistency. Align your rhythms with:",
+    icon: "⏰",
+    actions: [
+      "Set consistent meal times",
+      "Create morning and evening routines",
+      "Align activities with daylight hours",
+      "Track your circadian rhythm"
+    ]
+  }
+};
+
 export type QuizResult = {
   totalScore: number;
   level: string;
   message: string;
   categoryScores: Record<string, number>;
+  recommendations: Recommendation[];
 };
 
 export function calculateQuizResult(answers: Record<string, number>): QuizResult {
@@ -197,10 +329,17 @@ export function calculateQuizResult(answers: Record<string, number>): QuizResult
     icon = "🔥";
   }
 
+  // Get top 3 weakest categories
+  const weakestCategories = Object.entries(categoryScores)
+    .sort((a, b) => a[1] - b[1])
+    .slice(0, 3)
+    .map(([category]) => recommendations[category]);
+
   return {
     totalScore: total,
     level,
     message,
     categoryScores,
+    recommendations: weakestCategories,
   };
 }
