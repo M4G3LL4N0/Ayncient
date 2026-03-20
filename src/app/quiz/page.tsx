@@ -39,12 +39,12 @@ export default function QuizPage() {
             ← Back to Home
           </Link>
 
-          <div className="mt-6 card p-6 sm:mt-8 sm:p-8 md:p-10">
-            <div className="eyebrow mb-4">Your result</div>
-            <div className="grid gap-8 lg:grid-cols-[.9fr_1.1fr]">
+          <div className="mt-6 card p-6 sm:mt-8 sm:p-8 md:p-10 animate-fade-in">
+            <div className="eyebrow mb-4">🎉 Your Alignment Result</div>
+            <div className="grid gap-8 lg:grid-cols-[.9fr_1.1fr] animate-slide-up">
               <div>
-                <div className="subtle text-sm">Ayncient Alignment Score</div>
-                <div className="mt-2 text-7xl font-bold tracking-[-0.05em]">
+                <div className="subtle text-sm">Your Ayncient Alignment Score</div>
+                <div className="mt-2 text-7xl font-bold tracking-[-0.05em] bg-gradient-to-r from-[var(--accent)] to-yellow-300 bg-clip-text text-transparent">
                   {result.totalScore}
                 </div>
                 <div className="mt-3 text-2xl font-semibold">{result.level}</div>
@@ -109,14 +109,14 @@ export default function QuizPage() {
 
   return (
     <main className="min-h-screen py-10">
-      <div className="container">
-        <Link href="/" className="subtle inline-flex items-center gap-2 text-sm hover:text-white">
+      <div className="container animate-fade-in">
+        <Link href="/" className="subtle inline-flex items-center gap-2 text-sm hover:text-white transition-opacity hover:opacity-80">
           <ArrowLeft size={16} />
           Back to Home
         </Link>
 
-        <div className="mt-8 card p-8 md:p-10">
-          <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
+        <div className="mt-8 card p-8 md:p-10 transition-all duration-300 hover:shadow-lg">
+          <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between transition-opacity duration-300">
             <div>
               <div className="eyebrow mb-3">Ayncient Alignment Score</div>
               <h1 className="text-2xl font-bold tracking-[-0.04em] sm:text-3xl md:text-5xl">
@@ -128,11 +128,17 @@ export default function QuizPage() {
             </div>
           </div>
 
-          <div className="mt-8 h-2 overflow-hidden rounded-full bg-white/8">
-            <div
-              className="h-full rounded-full bg-[var(--accent)] transition-all"
-              style={{ width: `${progress}%` }}
-            />
+          <div className="mt-8">
+            <div className="mb-2 flex justify-between text-sm subtle">
+              <span>Progress</span>
+              <span>{progress}%</span>
+            </div>
+            <div className="h-3 w-full overflow-hidden rounded-full bg-white/8">
+              <div
+                className="h-full rounded-full bg-gradient-to-r from-[var(--accent)] to-yellow-400 transition-all duration-500 ease-out"
+                style={{ width: `${progress}%` }}
+              />
+            </div>
           </div>
 
           <div className="mt-10 rounded-[24px] border border-white/8 bg-black/20 p-6 md:p-8">
@@ -148,10 +154,10 @@ export default function QuizPage() {
                   <button
                     key={option.label}
                     type="button"
-                    className={`rounded-2xl border px-5 py-4 text-left transition ${
+                    className={`rounded-2xl border px-5 py-4 text-left transition-all duration-200 ${
                       active
-                        ? "border-[var(--accent)] bg-[rgba(201,139,46,0.12)]"
-                        : "border-white/8 bg-white/4 hover:bg-white/6"
+                        ? "border-[var(--accent)] bg-gradient-to-r from-[rgba(201,139,46,0.08)] to-[rgba(201,139,46,0.16)] shadow-[inset_0_0_0_1px_var(--accent)]"
+                        : "border-white/8 bg-white/4 hover:bg-white/8 hover:translate-y-[-2px]"
                     }`}
                     onClick={() =>
                       setAnswers((prev) => ({ ...prev, [current.key]: option.value }))

@@ -166,30 +166,35 @@ export function calculateQuizResult(answers: Record<string, number>): QuizResult
     total += scaled;
   }
 
-  let level = "Rebuilding";
-  let message =
-    "You are moving in the right direction. A few key upgrades could noticeably improve your energy and clarity.";
+  let level: string;
+  let message: string;
+  let icon: string;
 
   if (total <= 39) {
     level = "Deeply Misaligned";
     message =
-      "Your habits are working against your biology. The upside: a few basic changes can create fast improvements.";
+      "Your modern habits are actively working against your biology. The good news? Even small adjustments can create rapid improvements in energy, focus and wellbeing.\n\nFocus first on morning light, consistent sleep times, and reducing processed foods.";
+    icon = "⚠️";
   } else if (total <= 59) {
     level = "Disconnected";
     message =
-      "You have healthy instincts, but your environment and routines are still creating friction.";
+      "You have some healthy foundations, but inconsistency and modern stressors are taking their toll. Small daily wins will compound noticeably.\n\nTry adding 15 minutes of morning movement and reducing evening screen time first.";
+    icon = "🌱";
   } else if (total <= 74) {
     level = "Rebuilding";
     message =
-      "You are moving in the right direction. A few key upgrades could noticeably improve your energy and clarity.";
+      "You're making great progress in key areas! Double down on consistency - particularly sleep timing, movement variety, and digital boundaries.\n\nYour next focus: improve protein intake and create digital-free periods each day.";
+    icon = "🏗️";
   } else if (total <= 89) {
     level = "Well Aligned";
     message =
-      "Your habits support a strong biological foundation. Now it is about refining and sustaining.";
+      "Excellent work! Your lifestyle strongly supports stress resilience and sustained energy. Stay consistent and explore intermediate upgrades like cold exposure, fasting windows, and outdoor immersion.";
+    icon = "🌟";
   } else {
     level = "Ayncient State";
     message =
-      "Your lifestyle strongly reflects the conditions humans evolved to thrive in. Protect it and deepen it.";
+      "Remarkable alignment! Your lifestyle mirrors evolutionary conditions for peak performance. Maintain these foundations while deepening seasonal connections and local food sourcing.";
+    icon = "🔥";
   }
 
   return {
