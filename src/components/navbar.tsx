@@ -15,9 +15,9 @@ export function Navbar() {
           <a href="#features" className="subtle text-sm hover:text-white">
             Features
           </a>
-          <a href="#protocol" className="subtle text-sm hover:text-white">
-            Protocol
-          </a>
+          <Link href="/reset" className="subtle text-sm hover:text-white">
+            7-Day Reset
+          </Link>
           <Link href="/quiz" className="btn-primary text-sm">
             Take the Quiz
           </Link>

@@ -15,10 +15,11 @@ export function Waitlist() {
       <div className="container">
         <div className="card p-10 md:p-14">
           <div className="eyebrow mb-4">Early access</div>
-          <h2 className="section-title max-w-3xl">Return to human.</h2>
+          <h2 className="section-title max-w-3xl">Start Your Reset Today</h2>
           <p className="subtle mt-5 max-w-2xl text-lg leading-8">
-            Start with your Alignment Score. Join the early list for the full
-            Ayncient app, guided protocols, and the 7-Day Reset.
+            Be among the first to experience the 7-Day Reset protocol. 
+            Join the waitlist for early access to guided daily routines, 
+            expert support, and transformative results.
           </p>
 
           <form
