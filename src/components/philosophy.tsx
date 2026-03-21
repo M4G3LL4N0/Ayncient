@@ -1,35 +1,39 @@
 export function Philosophy() {
   return (
-    <section id="philosophy" className="py-20 md:py-28">
-      <div className="container grid gap-6 lg:grid-cols-[1fr_1fr]">
-        <div className="card p-8 md:p-10">
-          <div className="eyebrow mb-4">The problem</div>
-          <h2 className="section-title max-w-xl">
-            Modern life works against your biology.
+    <section id="philosophy" className="py-32 md:py-44">
+      <div className="container grid gap-10 lg:grid-cols-[1fr_1fr] lg:items-start">
+        <div className="card glass p-10 backdrop-blur-sm">
+          <div className="eyebrow mb-5 opacity-80">THE PROBLEM</div>
+          <h2 className="section-title max-w-xl text-balance">
+            Your biology wasn't designed for this.
           </h2>
-          <p className="subtle mt-5 max-w-xl text-lg leading-8">
-            Artificial light. Processed food. Constant stimulation. Sedentary
-            routines. Poor sleep. Endless screens.
-          </p>
-          <p className="subtle mt-4 max-w-xl text-lg leading-8">
-            Most people are not broken. They are misaligned.
-          </p>
+          <div className="prose prose-invert mt-8 max-w-xl space-y-5 text-lg leading-[1.75]">
+            <p>
+              Artificial lighting, processed foods, sedentary routines, digital overload — 
+              while technologically advanced, modern life conflicts with evolutionary biology.
+            </p>
+            <p>
+              The result? Poor sleep, chronic stress, metabolic dysfunction, 
+              and depleted cognitive performance.
+            </p>
+          </div>
         </div>
 
-        <div className="card p-8 md:p-10">
-          <div className="eyebrow mb-4">The belief</div>
-          <h2 className="section-title max-w-xl">
-            Return to the conditions humans were designed for.
+        <div className="card glass p-10 backdrop-blur-sm">
+          <div className="eyebrow mb-5 opacity-80">OUR APPROACH</div>
+          <h2 className="section-title max-w-xl text-balance">
+            Align with your human design.
           </h2>
-          <p className="subtle mt-5 max-w-xl text-lg leading-8">
-            Ayncient exists to help people rebuild their lives around the basics:
-            sleep, light, movement, food quality, rhythm, recovery, and social
-            connection.
-          </p>
-          <p className="subtle mt-4 max-w-xl text-lg leading-8">
-            Not by pretending the modern world does not exist. By living through
-            it more intelligently.
-          </p>
+          <div className="prose prose-invert mt-8 max-w-xl space-y-5 text-lg leading-[1.75]">
+            <p>
+              We help you systematically rebuild your foundations through sleep hygiene, 
+              circadian alignment, natural movement, whole foods, stress resilience, 
+              and intentional digital use.
+            </p>
+            <p>
+              Not by rejecting modernity, but by strategically engaging with it.
+            </p>
+          </div>
         </div>
       </div>
     </section>

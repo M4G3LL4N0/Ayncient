@@ -1,15 +1,21 @@
 @import "tailwindcss";
 
 :root {
-  --background: #0f0f0d;
-  --foreground: #f4efe5;
+  --background: #0a0a08;
+  --foreground: #f9f5e9;
   --muted: #c9b99c;
-  --card: #171714;
-  --card-2: #1f1f1b;
-  --border: rgba(255,255,255,0.08);
-  --accent: #c98b2e;
-  --accent-2: #8a5b3d;
+  --card: rgba(23,23,20,0.8);
+  --card-2: rgba(31,31,27,0.7);
+  --border: rgba(255,255,255,0.06);
+  --accent: #d79342;
+  --accent-2: #a66d46;
   --success: #51624a;
+}
+
+@layer components {
+  .text-balance {
+    text-wrap: balance;
+  }
 }
 
 * {

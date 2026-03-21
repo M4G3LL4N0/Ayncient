@@ -3,27 +3,29 @@ import { ArrowRight } from "lucide-react";
 
 export function Hero() {
   return (
-    <section className="relative overflow-hidden section-spacing bg-gradient-to-b from-[#0f0f0d] to-[#0f0f0d]/95">
-      <div className="container grid items-center gap-12 lg:grid-cols-[1.1fr_.9fr]">
+    <section className="relative overflow-hidden pt-40 pb-32 md:pt-48 md:pb-44">
+      <div className="container grid items-center gap-20 lg:grid-cols-[1fr_1fr] lg:gap-16">
         <div className="relative z-10">
-          <div className="eyebrow mb-5">Modern life is unnatural</div>
-          <h1 className="max-w-4xl text-5xl font-bold leading-[0.9] tracking-[-0.05em] md:text-7xl">
-            Reclaim your <span className="bg-gradient-to-r from-[var(--accent)] to-yellow-300 bg-clip-text text-transparent">human design</span>
+          <div className="eyebrow mb-6 opacity-80">THE MODERN HUMAN CONDITION</div>
+          <h1 className="mb-8 max-w-3xl text-5xl font-medium leading-[1.08] tracking-[-0.04em] md:text-6xl">
+            <span className="font-bold">Optimized biology.</span>
+            <span className="bg-gradient-to-r from-[var(--accent)] to-yellow-300 bg-clip-text text-transparent"> Human design.</span>
           </h1>
-          <p className="subtle mt-6 max-w-2xl text-lg leading-8 md:text-xl">
-            Ayncient is your modern toolkit for ancestral living. Optimize your biology through better sleep, food, movement, light, stress, and daily rhythms.
+          <p className="max-w-2xl text-lg leading-[1.75] tracking-tight md:text-xl">
+            Ayncient intelligently reconnects modern life with evolutionary necessities.
+            Measure and master sleep, light, movement, nutrition, stress, and circadian rhythm.
           </p>
 
-          <div className="mt-8 flex flex-wrap gap-4">
+          <div className="mt-12 mb-6 flex flex-wrap gap-4">
             <Link 
               href="/quiz" 
-              className="btn-primary group flex items-center gap-2"
+              className="btn-primary group flex items-center gap-3 opacity-95 hover:opacity-100"
             >
-              <span>Discover Your Alignment Score</span>
+              <span className="tracking-[-0.02em]">Start With Your Score</span>
               <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" />
             </Link>
-            <a href="#features" className="btn-secondary">
-              Explore the System
+            <a href="#protocol" className="btn-secondary hover:bg-white/10">
+              The 7-Day Reset
             </a>
           </div>
 
