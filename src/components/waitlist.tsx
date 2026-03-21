@@ -1,10 +1,14 @@
 "use client";
 
 import { useState } from "react";
+import { useSupabase } from "@/lib/supabase-provider";
 
 export function Waitlist() {
   const [email, setEmail] = useState("");
   const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const supabase = useSupabase();
 
   return (
     <section id="waitlist" className="section-spacing">
@@ -22,7 +26,22 @@ export function Waitlist() {
             onSubmit={(e) => {
               e.preventDefault();
               if (!email.trim()) return;
-              setSubmitted(true);
+              
+              setIsLoading(true);
+              setError(null);
+              
+              try {
+                const { error } = await supabase
+                  .from('waitlist')
+                  .insert({ email });
+                  
+                if (error) throw error;
+                setSubmitted(true);
+              } catch (err) {
+                setError('Failed to join waitlist. Please try again.');
+              } finally {
+                setIsLoading(false);
+              }
             }}
           >
             <input
@@ -32,14 +51,23 @@ export function Waitlist() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
-            <button type="submit" className="btn-primary h-14 px-8">
-              Join Waitlist
+            <button 
+              type="submit" 
+              className="btn-primary h-14 px-8"
+              disabled={isLoading}
+            >
+              {isLoading ? 'Joining...' : 'Join Waitlist'}
             </button>
           </form>
 
           {submitted && (
             <p className="mt-4 text-sm text-[var(--accent)]">
-              You&apos;re in. Next step: wire this to Supabase or Resend.
+              You're on the waitlist! We'll be in touch soon.
+            </p>
+          )}
+          {error && (
+            <p className="mt-4 text-sm text-red-500">
+              {error}
             </p>
           )}
         </div>

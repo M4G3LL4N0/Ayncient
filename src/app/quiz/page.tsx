@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { useSupabase } from "@/lib/supabase-provider";
 import Link from "next/link";
 import { quizQuestions, calculateQuizResult } from "@/lib/quiz";
 import { ArrowLeft, ArrowRight } from "lucide-react";
@@ -9,6 +10,9 @@ export default function QuizPage() {
   const [step, setStep] = useState(0);
   const [answers, setAnswers] = useState<Record<string, number>>({});
   const [showResult, setShowResult] = useState(false);
+  const [quizError, setQuizError] = useState<string | null>(null);
+  const [isSaving, setIsSaving] = useState(false);
+  const supabase = useSupabase();
 
   const current = quizQuestions[step];
   const progress = Math.round(((step + 1) / quizQuestions.length) * 100);
@@ -56,9 +60,34 @@ export default function QuizPage() {
                   <button onClick={handleRestart} className="btn-secondary">
                     Retake Quiz
                   </button>
-                  <a href="#email" className="btn-primary">
-                    Save My Score
-                  </a>
+                  <button 
+                    onClick={async () => {
+                      setIsSaving(true);
+                      setQuizError(null);
+                      try {
+                        const { error } = await supabase
+                          .from('quiz_results')
+                          .insert({
+                            email: '',
+                            total_score: result.totalScore,
+                            level: result.level,
+                            category_scores: result.categoryScores,
+                            recommendations: result.recommendations
+                          });
+                          
+                        if (error) throw error;
+                        alert('Your results have been saved!');
+                      } catch (err) {
+                        setQuizError('Failed to save results. Please try again.');
+                      } finally {
+                        setIsSaving(false);
+                      }
+                    }}
+                    className="btn-primary"
+                    disabled={isSaving}
+                  >
+                    {isSaving ? 'Saving...' : 'Save My Score'}
+                  </button>
                 </div>
 
                 <div className="rounded-[24px] border border-white/8 bg-black/20 p-6">
@@ -123,7 +152,36 @@ export default function QuizPage() {
                     <div className="space-y-4">
                       <p className="text-[var(--accent)]">{result.subMessage}</p>
                       
-                      <form className="space-y-4">
+                      <form 
+                        className="space-y-4"
+                        onSubmit={async (e) => {
+                          e.preventDefault();
+                          const formData = new FormData(e.currentTarget);
+                          const email = formData.get('email') as string;
+                          
+                          setIsSaving(true);
+                          setQuizError(null);
+                          
+                          try {
+                            const { error } = await supabase
+                              .from('quiz_results')
+                              .insert({
+                                email,
+                                total_score: result.totalScore,
+                                level: result.level,
+                                category_scores: result.categoryScores,
+                                recommendations: result.recommendations
+                              });
+                              
+                            if (error) throw error;
+                            alert('Your results have been saved!');
+                          } catch (err) {
+                            setQuizError('Failed to save results. Please try again.');
+                          } finally {
+                            setIsSaving(false);
+                          }
+                        }}
+                      >
                         <input
                           type="email"
                           placeholder="Your best email"
@@ -131,14 +189,23 @@ export default function QuizPage() {
                           required
                         />
                         <div className="flex flex-col gap-3 sm:flex-row">
-                          <button type="submit" className="btn-primary flex-1">
-                            {result.ctaPrimary}
+                          <button 
+                            type="submit" 
+                            className="btn-primary flex-1"
+                            disabled={isSaving}
+                          >
+                            {isSaving ? 'Saving...' : result.ctaPrimary}
                           </button>
                           <button type="button" className="btn-secondary flex-1">
                             {result.ctaSecondary}
                           </button>
                         </div>
                       </form>
+                      {quizError && (
+                        <p className="mt-4 text-sm text-red-500">
+                          {quizError}
+                        </p>
+                      )}
 
                       <p className="text-xs subtle">
                         By continuing, you agree to our Terms and Privacy Policy.
