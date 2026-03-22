@@ -242,7 +242,7 @@ export default function QuizPage() {
             </div>
           </div>
         </div>
-      </main>
+      </div>
     );
   }
 
