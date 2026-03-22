@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { Waitlist } from "@/components/waitlist";
 
 export default function ResetPage() {
   return (
