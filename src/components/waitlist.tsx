@@ -1,9 +1,3 @@
-"use client";
-
-import { useState } from "react";
-import { useSupabase } from "@/lib/supabase-provider";
-
-export function Waitlist() {
   const [email, setEmail] = useState("");
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState<string | null>(null);
