@@ -24,7 +24,7 @@ export function Waitlist() {
 
           <form
             className="mt-8 flex max-w-2xl flex-col gap-4 md:flex-row"
-            onSubmit={(e) => {
+            onSubmit={async (e) => {
               e.preventDefault();
               if (!email.trim()) return;
               
