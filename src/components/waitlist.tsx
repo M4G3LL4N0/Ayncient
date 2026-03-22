@@ -28,7 +28,8 @@ export function Waitlist() {
       });
 
       if (!res.ok) {
-        throw new Error("Failed to join waitlist");
+        const errorData = await res.json();
+        throw new Error(errorData.error || "Failed to join waitlist");
       }
 
       setSubmitted(true);

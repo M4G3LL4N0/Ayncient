@@ -1,4 +1,25 @@
+# Ayncient App
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+
+## Supabase Configuration
+
+The project uses Supabase with the `ayncient` schema. Required environment variables:
+
+```bash
+NEXT_PUBLIC_SUPABASE_URL=your-supabase-url
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key
+```
+
+All database operations are scoped to the `ayncient` schema. The Supabase client is configured with:
+
+```typescript
+{
+  db: { schema: "ayncient" }
+}
+```
+
+The project gracefully handles missing Supabase configuration, allowing marketing pages to function without database access.
 
 ## Getting Started
 
