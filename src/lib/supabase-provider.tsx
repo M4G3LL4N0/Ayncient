@@ -1,18 +1,7 @@
 "use client";
 
-import { createContext, useContext } from "react";
-import { supabase } from "./supabase";
-
-const SupabaseContext = createContext(supabase);
-
-export function SupabaseProvider({ children }: { children: React.ReactNode }) {
-  return (
-    <SupabaseContext.Provider value={supabase}>
-      {children}
-    </SupabaseContext.Provider>
-  );
-}
+import { createBrowserClient } from "./supabase/client";
 
 export function useSupabase() {
-  return useContext(SupabaseContext);
+  return createBrowserClient();
 }
