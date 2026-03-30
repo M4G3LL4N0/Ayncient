@@ -24,21 +24,39 @@ export default function DailyCheckinForm() {
     setFormData(prev => ({ ...prev, [field]: value }));
   };
 
+  const validateForm = () => {
+    if (formData.sleep_hours === null) {
+      toast.error("Please enter your hours of sleep");
+      return false;
+    }
+    if (formData.morning_sunlight === null) {
+      toast.error("Please specify if you got morning sunlight");
+      return false;
+    }
+    // Add more validation as needed
+    return true;
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!validateForm()) return;
+    
     setIsSubmitting(true);
 
     try {
       const { error } = await supabase
         .from("daily_checkin")
-        .insert([{ ...formData }]);
+        .insert([{ 
+          ...formData,
+          user_id: (await supabase.auth.getUser()).data.user?.id 
+        }]);
 
       if (error) throw error;
 
       toast.success("Check-in submitted successfully!");
-      router.refresh();
-    } catch (error) {
-      toast.error("Failed to submit check-in");
+      router.push('/dashboard');
+    } catch (error: any) {
+      toast.error(error.message || "Failed to submit check-in");
       console.error(error);
     } finally {
       setIsSubmitting(false);
