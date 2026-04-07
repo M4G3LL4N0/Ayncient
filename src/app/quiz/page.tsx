@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from "react";
 import Link from "next/link";
-import { ArrowLeft, ArrowRight } from "lucide-react";
+import { ArrowLeft, ArrowRight, Check, X } from "lucide-react";
 import { calculateQuizResult, quizQuestions } from "@/lib/quiz";
 import { saveQuizResult } from "@/domain/quiz/service";
 
@@ -12,11 +12,12 @@ export default function QuizPage() {
   const [showResult, setShowResult] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
   const [saveError, setSaveError] = useState<string | null>(null);
+  const [email, setEmail] = useState("");
+  const [isEmailSubmitted, setIsEmailSubmitted] = useState(false);
 
   const current = quizQuestions[step];
   const progress = Math.round(((step + 1) / quizQuestions.length) * 100);
   const canContinue = current ? answers[current.key] !== undefined : false;
-
   const result = useMemo(() => calculateQuizResult(answers), [answers]);
 
   async function handleSave() {
@@ -24,7 +25,7 @@ export default function QuizPage() {
     setSaveError(null);
     try {
       const payload = {
-        email: null, // email will be collected in the UI form
+        email: isEmailSubmitted ? email : null,
         total_score: result.totalScore,
         level: result.level,
         category_scores: result.categoryScores,
@@ -56,14 +57,17 @@ export default function QuizPage() {
     setAnswers({});
     setShowResult(false);
     setSaveError(null);
+    setEmail("");
+    setIsEmailSubmitted(false);
   }
 
   if (showResult) {
     return (
       <main className="min-h-screen py-10">
         <div className="container">
-          <Link href="/" className="subtle text-sm hover:text-white">
-            ← Back to Home
+          <Link href="/" className="btn-ghost inline-flex items-center gap-2">
+            <ArrowLeft size={16} />
+            Back to Home
           </Link>
 
           <div className="mt-8 card p-8 md:p-10">
@@ -72,7 +76,7 @@ export default function QuizPage() {
             <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
               <div>
                 <div className="subtle text-sm">Ayncient Alignment Score</div>
-                <div className="mt-2 text-7xl font-bold tracking-[-0.05em]">
+                <div className="mt-2 text-7xl font-bold tracking-[-0.05em] text-gradient">
                   {result.totalScore}
                 </div>
                 <div className="mt-3 text-2xl font-semibold">{result.level}</div>
@@ -81,22 +85,63 @@ export default function QuizPage() {
                   {result.message}
                 </p>
 
+                {!isEmailSubmitted && (
+                  <div className="mt-8">
+                    <div className="form-label">Get your full results</div>
+                    <form
+                      onSubmit={(e) => {
+                        e.preventDefault();
+                        setIsEmailSubmitted(true);
+                        handleSave();
+                      }}
+                      className="mt-3 flex gap-3"
+                    >
+                      <input
+                        type="email"
+                        placeholder="Enter your email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        required
+                        className="input-field flex-1"
+                      />
+                      <button
+                        type="submit"
+                        className="btn-primary"
+                        disabled={isSaving}
+                      >
+                        {isSaving ? (
+                          <span className="flex items-center gap-2">
+                            <span>Sending...</span>
+                            <span className="loading-spinner" />
+                          </span>
+                        ) : (
+                          "Send Results"
+                        )}
+                      </button>
+                    </form>
+                    {saveError && (
+                      <p className="form-error mt-2">{saveError}</p>
+                    )}
+                  </div>
+                )}
+
+                {isEmailSubmitted && (
+                  <div className="mt-8">
+                    <div className="form-success">
+                      <Check size={18} className="mr-2" />
+                      Results sent to your email!
+                    </div>
+                  </div>
+                )}
+
                 <div className="mt-8 flex flex-wrap gap-4">
                   <button onClick={handleRestart} className="btn-secondary">
                     Retake Quiz
                   </button>
-                  <button
-                    onClick={handleSave}
-                    className="btn-primary"
-                    disabled={isSaving}
-                  >
-                    {isSaving ? "Saving…" : "Save My Score"}
-                  </button>
+                  <a href="#waitlist" className="btn-primary">
+                    Join Waitlist
+                  </a>
                 </div>
-
-                {saveError && (
-                  <p className="mt-4 text-sm text-red-400">{saveError}</p>
-                )}
               </div>
 
               <div className="rounded-[24px] border border-white/8 bg-black/20 p-6">
@@ -111,7 +156,7 @@ export default function QuizPage() {
                       </div>
                       <div className="h-2 overflow-hidden rounded-full bg-white/8">
                         <div
-                          className="h-full rounded-full bg-[var(--accent)]"
+                          className="h-full rounded-full bg-gradient-to-r from-cta-primary to-cta-secondary"
                           style={{ width: `${value * 10}%` }}
                         />
                       </div>
@@ -130,8 +175,9 @@ export default function QuizPage() {
     return (
       <main className="min-h-screen py-10">
         <div className="container">
-          <Link href="/" className="subtle text-sm hover:text-white">
-            ← Back to Home
+          <Link href="/" className="btn-ghost inline-flex items-center gap-2">
+            <ArrowLeft size={16} />
+            Back to Home
           </Link>
           <div className="mt-8 card p-8 md:p-10">
             <p className="text-lg">No quiz questions found.</p>
@@ -146,7 +192,7 @@ export default function QuizPage() {
       <div className="container">
         <Link
           href="/"
-          className="subtle inline-flex items-center gap-2 text-sm hover:text-white"
+          className="btn-ghost inline-flex items-center gap-2 hover:text-white"
         >
           <ArrowLeft size={16} />
           Back to Home
@@ -156,7 +202,7 @@ export default function QuizPage() {
           <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
             <div>
               <div className="eyebrow mb-3">Ayncient Alignment Score</div>
-              <h1 className="text-3xl font-bold tracking-[-0.04em] md:text-5xl">
+              <h1 className="text-3xl font-bold tracking-[-0.04em] md:text-5xl text-gradient">
                 Find out how aligned your life really is.
               </h1>
             </div>
@@ -168,7 +214,7 @@ export default function QuizPage() {
 
           <div className="mt-8 h-2 overflow-hidden rounded-full bg-white/8">
             <div
-              className="h-full rounded-full bg-[var(--accent)] transition-all"
+              className="h-full rounded-full bg-gradient-to-r from-cta-primary to-cta-secondary transition-all"
               style={{ width: `${progress}%` }}
             />
           </div>
@@ -190,8 +236,8 @@ export default function QuizPage() {
                     type="button"
                     className={`rounded-2xl border px-5 py-4 text-left transition ${
                       active
-                        ? "border-[var(--accent)] bg-[rgba(201,139,46,0.12)]"
-                        : "border-white/8 bg-white/4 hover:bg-white/6"
+                        ? "border-cta-primary bg-[#d79342]/12"
+                        : "border-white/8 bg-white/4 hover:border-white/20 hover:bg-white/6"
                     }`}
                     onClick={() =>
                       setAnswers((prev) => ({

@@ -43,7 +43,7 @@ export function FeatureGrid() {
   return (
     <section id="features" className="section-spacing">
       <div className="container">
-        <div className="mb-16 max-w-3xl text-center mx-auto">
+        <div className="text-center mb-16 max-w-3xl mx-auto">
           <div className="eyebrow mb-4">What Ayncient does</div>
           <h2 className="section-title">A system for living more naturally.</h2>
           <p className="section-intro">
@@ -56,12 +56,17 @@ export function FeatureGrid() {
           {items.map((item) => {
             const Icon = item.icon;
             return (
-              <div key={item.title} className="card p-6">
+              <div key={item.title} className="card p-6 hover:shadow-lg hover:scale-105 transition-all duration-200">
                 <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-2xl bg-white/6">
                   <Icon size={22} />
                 </div>
-                <h3 className="text-xl font-semibold">{item.title}</h3>
-                <p className="subtle mt-3 leading-7">{item.description}</p>
+                <h3 className="text-xl font-semibold mb-3">{item.title}</h3>
+                <p className="subtle leading-7">{item.description}</p>
+                <div className="mt-4 pt-4 border-t border-white/10">
+                  <a href="#waitlist" className="btn-secondary w-full">
+                    Learn More
+                  </a>
+                </div>
               </div>
             );
           })}
