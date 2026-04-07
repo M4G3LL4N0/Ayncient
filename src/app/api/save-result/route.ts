@@ -1,43 +1,53 @@
-import { createServerClient } from "@/lib/supabase/server";
 import { NextResponse } from "next/server";
-import { QuizResultRow } from "@/lib/types";
+import { createServerSupabaseClient } from "@/lib/supabase/server";
 
-export async function POST(request: Request) {
+export async function POST(req: Request) {
   try {
-    const supabase = createServerClient();
-    const { email, result } = await request.json();
+    const body = await req.json();
 
-    if (!result) {
+    const email = body?.email ? String(body.email).trim() : null;
+    const total_score = Number(body?.total_score ?? 0);
+    const level = String(body?.level || "").trim();
+    const category_scores =
+      body?.category_scores && typeof body.category_scores === "object"
+        ? body.category_scores
+        : {};
+    const answers =
+      body?.answers && typeof body.answers === "object"
+        ? body.answers
+        : {};
+
+    if (!level || Number.isNaN(total_score)) {
       return NextResponse.json(
-        { error: "Quiz result is required" },
+        { error: "Missing or invalid result payload." },
         { status: 400 }
       );
     }
 
-    const { data, error } = await supabase
-      .from("quiz_results")
-      .insert<QuizResultRow>([
-        {
-          email: email || null,
-          total_score: result.totalScore,
-          level: result.level,
-          category_scores: result.categoryScores,
-          answers: result.answers,
-          source: "quiz",
-        },
-      ])
-      .select()
-      .single();
+    const supabase = await createServerSupabaseClient();
 
-    if (error) {
-      throw error;
+    if (!supabase) {
+      return NextResponse.json(
+        { error: "Supabase is not configured yet." },
+        { status: 503 }
+      );
     }
 
-    return NextResponse.json(data);
-  } catch (error) {
-    return NextResponse.json(
-      { error: "Failed to save quiz result" },
-      { status: 500 }
-    );
+    const { error } = await supabase.from("quiz_results").insert({
+      email,
+      total_score,
+      level,
+      category_scores,
+      answers,
+      source: "quiz",
+    });
+
+    if (error) {
+      return NextResponse.json({ error: error.message }, { status: 500 });
+    }
+
+    return NextResponse.json({ ok: true });
+  } catch {
+    return NextResponse.json({ error: "Invalid request." }, { status: 400 });
   }
 }

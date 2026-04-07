@@ -1,14 +1,25 @@
-import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
+import { createServerClient } from "@supabase/ssr";
 import { cookies } from "next/headers";
 
-export function createServerClient() {
-  const cookieStore = cookies();
-  return createServerComponentClient(
-    { cookies: () => cookieStore },
-    {
-      options: {
-        db: { schema: "ayncient" },
+export async function createServerSupabaseClient() {
+  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+  const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+
+  if (!supabaseUrl || !supabaseAnonKey) {
+    return null;
+  }
+
+  const cookieStore = await cookies();
+
+  return createServerClient(supabaseUrl, supabaseAnonKey, {
+    db: { schema: "ayncient" },
+    cookies: {
+      getAll() {
+        return cookieStore.getAll();
       },
-    }
-  );
+      setAll() {
+        // no-op for current route usage
+      },
+    },
+  });
 }
