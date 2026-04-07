@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { addToWaitlist } from "@/domain/waitlist/service";
 
 export function Waitlist() {
   const [email, setEmail] = useState("");
@@ -16,26 +17,12 @@ export function Waitlist() {
     setError(null);
 
     try {
-      const res = await fetch("/api/waitlist", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email,
-          source: "homepage",
-        }),
-      });
-
-      if (!res.ok) {
-        const errorData = await res.json();
-        throw new Error(errorData.error || "Failed to join waitlist");
-      }
-
+      const { error } = await addToWaitlist({ email, source: "homepage" });
+      if (error) throw new Error(error);
       setSubmitted(true);
       setEmail("");
-    } catch {
-      setError("Failed to join waitlist. Please try again.");
+    } catch (e: any) {
+      setError(e.message || "Failed to join waitlist. Please try again.");
     } finally {
       setIsLoading(false);
     }

@@ -4,17 +4,40 @@ import { useMemo, useState } from "react";
 import Link from "next/link";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { calculateQuizResult, quizQuestions } from "@/lib/quiz";
+import { saveQuizResult } from "@/domain/quiz/service";
 
 export default function QuizPage() {
   const [step, setStep] = useState(0);
   const [answers, setAnswers] = useState<Record<string, number>>({});
   const [showResult, setShowResult] = useState(false);
+  const [isSaving, setIsSaving] = useState(false);
+  const [saveError, setSaveError] = useState<string | null>(null);
 
   const current = quizQuestions[step];
   const progress = Math.round(((step + 1) / quizQuestions.length) * 100);
   const canContinue = current ? answers[current.key] !== undefined : false;
 
   const result = useMemo(() => calculateQuizResult(answers), [answers]);
+
+  async function handleSave() {
+    setIsSaving(true);
+    setSaveError(null);
+    try {
+      const payload = {
+        email: null, // email will be collected in the UI form
+        total_score: result.totalScore,
+        level: result.level,
+        category_scores: result.categoryScores,
+        answers,
+      };
+      const { error } = await saveQuizResult(payload);
+      if (error) throw new Error(error);
+    } catch (e: any) {
+      setSaveError(e.message);
+    } finally {
+      setIsSaving(false);
+    }
+  }
 
   function handleNext() {
     if (step < quizQuestions.length - 1) {
@@ -32,6 +55,7 @@ export default function QuizPage() {
     setStep(0);
     setAnswers({});
     setShowResult(false);
+    setSaveError(null);
   }
 
   if (showResult) {
@@ -61,10 +85,18 @@ export default function QuizPage() {
                   <button onClick={handleRestart} className="btn-secondary">
                     Retake Quiz
                   </button>
-                  <a href="#email" className="btn-primary">
-                    Save My Score
-                  </a>
+                  <button
+                    onClick={handleSave}
+                    className="btn-primary"
+                    disabled={isSaving}
+                  >
+                    {isSaving ? "Saving…" : "Save My Score"}
+                  </button>
                 </div>
+
+                {saveError && (
+                  <p className="mt-4 text-sm text-red-400">{saveError}</p>
+                )}
               </div>
 
               <div className="rounded-[24px] border border-white/8 bg-black/20 p-6">
@@ -85,29 +117,6 @@ export default function QuizPage() {
                       </div>
                     </div>
                   ))}
-                </div>
-
-                <div
-                  id="email"
-                  className="mt-8 rounded-2xl border border-white/8 bg-white/4 p-5"
-                >
-                  <div className="text-base font-semibold">Save your score</div>
-                  <p className="subtle mt-2 text-sm leading-7">
-                    Next fast move: connect this form to Supabase and store each
-                    result with an email for onboarding, lifecycle emails, and the
-                    7-Day Reset.
-                  </p>
-
-                  <form className="mt-4 flex flex-col gap-3 md:flex-row">
-                    <input
-                      type="email"
-                      placeholder="Enter your email"
-                      className="h-12 flex-1 rounded-full border border-white/8 bg-white/4 px-4 outline-none placeholder:text-[#c9b99c]/60"
-                    />
-                    <button type="button" className="btn-primary h-12 px-6">
-                      Save Result
-                    </button>
-                  </form>
                 </div>
               </div>
             </div>
