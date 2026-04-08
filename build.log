@@ -21,7 +21,7 @@ Route (app)                              Size     First Load JS
 ├ ○ /_not-found                          885 B          85.1 kB
 ├ λ /api/save-result                     0 B                0 B
 ├ λ /api/waitlist                        0 B                0 B
-├ ○ /dashboard                           144 B          84.4 kB
+├ λ /dashboard                           144 B          84.4 kB
 ├ ○ /dashboard/check-in                  1.1 kB          148 kB
 ├ ○ /dashboard/journal                   144 B          84.4 kB
 ├ ○ /dashboard/protocols                 144 B          84.4 kB

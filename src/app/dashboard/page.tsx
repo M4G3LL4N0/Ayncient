@@ -1,8 +1,19 @@
 import { redirect } from "next/navigation";
 import { createServerSupabaseClient } from "@/lib/supabase/server";
 
+export const dynamic = "force-dynamic";
+
 export default async function DashboardPage() {
-  const supabase = createServerSupabaseClient();
+  const hasSupabaseEnv =
+    !!process.env.NEXT_PUBLIC_SUPABASE_URL &&
+    !!process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+
+  if (!hasSupabaseEnv) {
+    redirect("/");
+  }
+
+  const supabase = await createServerSupabaseClient();
+
   const {
     data: { session },
   } = await supabase.auth.getSession();
@@ -10,6 +21,7 @@ export default async function DashboardPage() {
   if (!session) {
     redirect("/");
   }
+
   return (
     <main className="min-h-screen px-6 py-10">
       <div className="mx-auto max-w-6xl">
