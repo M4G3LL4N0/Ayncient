@@ -67,6 +67,19 @@ body {
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   overflow: hidden;
+  z-index: 1;
+}
+
+.card:hover::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at center, rgba(74,222,128,0.1) 0%, transparent 70%);
+  pointer-events: none;
+  animation: glow-pulse 3s ease-in-out infinite;
 }
 
 .card:hover::before {
@@ -85,6 +98,16 @@ body {
   0% { opacity: 0.3; }
   50% { opacity: 0.6; }
   100% { opacity: 0.3; }
+}
+
+@keyframes float {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
+  100% { transform: translateY(0); }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
 }
 
 * {

@@ -16,6 +16,10 @@ export function Hero() {
                 Human design.
               </span>
             </h1>
+            <div className="absolute inset-0 pointer-events-none">
+              <div className="absolute top-[20%] left-[10%] w-64 h-64 bg-gradient-to-r from-cta-primary/10 to-cta-secondary/5 rounded-full blur-3xl opacity-40 animate-float"></div>
+              <div className="absolute top-[40%] right-[15%] w-48 h-48 bg-gradient-to-r from-cta-secondary/10 to-cta-primary/5 rounded-full blur-2xl opacity-30 animate-float animation-delay-2000"></div>
+            </div>
             <p className="max-w-2xl text-lg leading-relaxed text-[#d9c9ac] mb-8">
               Ayncient intelligently reconnects modern life with evolutionary necessities.
               Measure and master sleep, light, movement, nutrition, stress, and circadian rhythm.
