@@ -1,4 +1,6 @@
-import { createBrowserClient } from "@supabase/ssr";
+"use client";
+
+import { createBrowserClient as createSupabaseBrowserClient } from "@supabase/ssr";
 
 export function createBrowserSupabaseClient() {
   const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
@@ -8,7 +10,5 @@ export function createBrowserSupabaseClient() {
     return null;
   }
 
-  return createBrowserClient(supabaseUrl, supabaseAnonKey, {
-    db: { schema: "ayncient" },
-  });
+  return createSupabaseBrowserClient(supabaseUrl, supabaseAnonKey);
 }

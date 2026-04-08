@@ -1,61 +1,11 @@
 @import "tailwindcss";
 
 :root {
-  --background: #0a0a08;
-  --foreground: #f9f5e9;
-  --muted: #c9b99c;
-  --card: rgba(23,23,20,0.8);
-  --card-2: rgba(31,31,27,0.7);
-  --border: rgba(255,255,255,0.06);
-  --accent: #d79342;
-  --accent-2: #a66d46;
-  --success: #51624a;
-  --cta-primary: #d79342;
-  --cta-secondary: #a66d46;
-  --gradient-primary: linear-gradient(135deg, #d79342 0%, #a66d46 100%);
-  --gradient-secondary: linear-gradient(135deg, #a66d46 0%, #d79342 100%);
-}
-
-@layer components {
-  .text-balance {
-    text-wrap: balance;
-  }
-
-  .btn-primary {
-    @apply bg-gradient-to-r from-cta-primary to-cta-secondary text-black font-bold py-3 px-6 rounded-2xl shadow-lg hover:from-cta-secondary hover:to-cta-primary transition-all duration-200;
-  }
-
-  .btn-secondary {
-    @apply border border-white/20 bg-black/20 text-white font-medium py-3 px-6 rounded-2xl shadow-sm hover:border-white/40 hover:bg-white/5 transition-all duration-200;
-  }
-
-  .btn-ghost {
-    @apply text-white font-medium py-2 px-4 rounded-2xl border border-white/20 bg-black/10 hover:border-white/40 hover:bg-white/5 transition-all duration-200;
-  }
-
-  .card {
-    @apply rounded-3xl border border-white/10 bg-gradient-to-b from-black/20 to-black/10 backdrop-blur-sm shadow-lg;
-  }
-
-  .eyebrow {
-    @apply text-[#a66d46] uppercase tracking-wider font-bold text-sm;
-  }
-
-  .section-title {
-    @apply text-5xl md:text-6xl font-bold tracking-tight leading-tight mb-6;
-  }
-
-  .section-subtitle {
-    @apply text-xl md:text-2xl text-[#c9b99c] font-medium leading-relaxed mb-8;
-  }
-
-  .section-intro {
-    @apply text-lg md:text-xl text-[#d9c9ac] leading-relaxed max-w-3xl mx-auto;
-  }
-}
-
-* {
-  box-sizing: border-box;
+  --background: #08110d;
+  --foreground: #f5f7f2;
+  --muted: #9aa79e;
+  --card: #101915;
+  --border: rgba(255,255,255,0.08);
 }
 
 html {
@@ -63,12 +13,15 @@ html {
 }
 
 body {
-  background:
-    radial-gradient(circle at top, rgba(201,139,46,0.08), transparent 30%),
-    linear-gradient(to bottom, #0f0f0d, #11110f 30%, #0d0d0b 100%);
-  color: var(--foreground);
   min-height: 100vh;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  background:
+    radial-gradient(circle at top, rgba(34, 197, 94, 0.12), transparent 35%),
+    linear-gradient(180deg, #08110d 0%, #0b1510 100%);
+  color: var(--foreground);
+}
+
+* {
+  border-color: var(--border);
 }
 
 a {
@@ -76,171 +29,6 @@ a {
   text-decoration: none;
 }
 
-.container {
-  width: min(1200px, calc(100% - 32px));
-  margin: 0 auto;
-}
-
-.glass {
-  background: rgba(255,255,255,0.03);
-  border: 1px solid var(--border);
-  backdrop-filter: blur(8px);
-}
-
-.section-spacing {
-  @apply py-20 md:py-24 lg:py-28;
-}
-
-@media (min-width: 768px) {
-  .section-spacing {
-    @apply py-28 md:py-32 lg:py-36;
-  }
-}
-
-.btn-primary:hover {
-  transform: translateY(-1px) scale(1.02);
-  box-shadow: 0 10px 30px rgba(215, 147, 66, 0.3);
-}
-
-.btn-secondary:hover {
-  transform: translateY(-1px);
-}
-
-.btn-ghost:hover {
-  transform: translateY(-1px);
-}
-
-.input-field {
-  @apply w-full px-4 py-3 rounded-2xl border border-white/20 bg-black/10 text-white placeholder:text-[#c9b99c]/60 focus:outline-none focus:border-white/40 focus:bg-black/15 transition-all duration-200;
-}
-
-.input-field:focus {
-  box-shadow: 0 0 0 3px rgba(215, 147, 66, 0.1);
-}
-
-.form-label {
-  @apply text-[#c9b99c] font-medium mb-2 block;
-}
-
-.form-grid {
-  @apply grid gap-6;
-}
-
-@media (min-width: 640px) {
-  .form-grid {
-    @apply grid-cols-2;
-  }
-}
-
-@media (min-width: 1024px) {
-  .form-grid {
-    @apply grid-cols-3;
-  }
-}
-
-.grid-auto {
-  @apply grid gap-6;
-}
-
-@media (min-width: 768px) {
-  .grid-auto {
-    @apply grid-cols-2;
-  }
-}
-
-@media (min-width: 1024px) {
-  .grid-auto.three {
-    @apply grid-cols-3;
-  }
-
-  .grid-auto.four {
-    @apply grid-cols-4;
-  }
-}
-
-/* Enhanced CTA styles */
-.cta-section {
-  @apply relative overflow-hidden;
-}
-
-.cta-gradient {
-  @apply absolute inset-0 -z-10 opacity-20;
-  background: linear-gradient(135deg, #d79342 0%, #a66d46 50%, #d79342 100%);
-}
-
-.cta-content {
-  @apply relative z-10;
-}
-
-/* Trust badges */
-.trust-badges {
-  @apply flex flex-wrap gap-3 justify-center mb-8;
-}
-
-.trust-badge {
-  @apply text-xs font-medium px-3 py-1.5 rounded-full border border-white/20 bg-black/10;
-}
-
-/* Social proof */
-.social-proof {
-  @apply mt-6 text-center;
-}
-
-.social-proof-item {
-  @apply inline-block px-4 py-2 text-sm font-medium bg-black/10 rounded-2xl;
-}
-
-/* Progress indicators */
-.progress-bar {
-  @apply w-full h-2 bg-white/10 rounded-full overflow-hidden;
-}
-
-.progress-fill {
-  @apply h-full bg-gradient-to-r from-cta-primary to-cta-secondary rounded-full transition-all duration-300;
-}
-
-/* Form validation */
-.form-error {
-  @apply text-red-400 text-sm mt-2;
-}
-
-.form-success {
-  @apply text-green-400 text-sm mt-2;
-}
-
-/* Loading states */
-.loading-spinner {
-  @apply animate-spin;
-}
-
-/* Enhanced visual hierarchy */
-.text-gradient {
-  @apply bg-gradient-to-r from-cta-primary to-cta-secondary bg-clip-text text-transparent;
-}
-
-.text-shadow {
-  @apply text-shadow-lg;
-}
-
-/* Micro-interactions */
-.hover-lift {
-  @apply hover:translate-y-[-2px] hover:scale-105 transition-all duration-200;
-}
-
-/* Countdown timer */
-.countdown {
-  @apply flex items-center justify-center gap-2 text-2xl font-bold;
-}
-
-.countdown-digit {
-  @apply px-3 py-2 bg-black/20 rounded-2xl;
-}
-
-/* Exit-intent modal */
-.exit-intent-modal {
-  @apply fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4;
-}
-
-.exit-intent-content {
-  @apply bg-black/30 backdrop-blur-sm rounded-3xl border border-white/10 p-8 max-w-md w-full;
+button {
+  cursor: pointer;
 }

@@ -1,35 +1,28 @@
 import { NextResponse } from "next/server";
 import { createServerSupabaseClient } from "@/lib/supabase/server";
-import { saveQuizResult } from "@/domain/quiz/service";
 
-/**
- * POST /api/save-result
- *
- * Expected payload:
- * {
- *   email?: string,
- *   total_score: number,
- *   level: string,
- *   category_scores?: Record<string, number>,
- *   answers?: Record<string, number>
- * }
- */
-export async function POST(req: Request) {
+export async function POST(request: Request) {
   try {
-    const body = await req.json();
+    const body = await request.json();
 
-    // Delegate validation & persistence to the domain service
-    const { error } = await saveQuizResult(body, createServerSupabaseClient);
+    const supabase = await createServerSupabaseClient();
+
+    const { error } = await supabase.from("quiz_results").insert([
+      {
+        ...body,
+        created_at: new Date().toISOString(),
+      },
+    ]);
 
     if (error) {
-      return NextResponse.json({ error }, { status: 400 });
+      return NextResponse.json({ error: error.message }, { status: 400 });
     }
 
-    return NextResponse.json({ ok: true });
-  } catch (e) {
-    return NextResponse.json(
-      { error: "Invalid request." },
-      { status: 400 }
-    );
+    return NextResponse.json({ success: true });
+  } catch (error) {
+    const message =
+      error instanceof Error ? error.message : "Failed to save quiz result.";
+
+    return NextResponse.json({ error: message }, { status: 500 });
   }
 }

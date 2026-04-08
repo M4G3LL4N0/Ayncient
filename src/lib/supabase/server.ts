@@ -6,19 +6,25 @@ export async function createServerSupabaseClient() {
   const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
   if (!supabaseUrl || !supabaseAnonKey) {
-    return null;
+    throw new Error("Missing Supabase server environment variables.");
   }
 
   const cookieStore = await cookies();
 
   return createServerClient(supabaseUrl, supabaseAnonKey, {
-    db: { schema: "ayncient" },
     cookies: {
-      getAll() {
-        return cookieStore.getAll();
+      get(name: string) {
+        return cookieStore.get(name)?.value;
       },
-      setAll() {
-        // no-op for current route usage
+      set(name: string, value: string, options: Record<string, unknown>) {
+        try {
+          cookieStore.set({ name, value, ...(options as object) });
+        } catch {}
+      },
+      remove(name: string, options: Record<string, unknown>) {
+        try {
+          cookieStore.set({ name, value: "", ...(options as object), maxAge: 0 });
+        } catch {}
       },
     },
   });

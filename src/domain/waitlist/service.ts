@@ -1,42 +1,30 @@
-import { SupabaseClient } from "@supabase/supabase-js";
-
-type WaitlistPayload = {
+export interface WaitlistInput {
   email: string;
+  name?: string;
   source?: string;
-};
+}
 
-/**
- * Adds an email to the waitlist.
- * Returns { error?: string }.
- */
-export async function addToWaitlist(
-  payload: WaitlistPayload,
-  supabaseFactory?: () => Promise<SupabaseClient | null>
-) {
-  if (!payload.email) {
-    return { error: "Email required" };
+export async function saveWaitlistEntry(input: WaitlistInput) {
+  const response = await fetch("/api/waitlist", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(input),
+  });
+
+  if (!response.ok) {
+    let message = "Failed to save waitlist entry.";
+    try {
+      const data = await response.json();
+      if (data?.error) message = data.error;
+    } catch {}
+    throw new Error(message);
   }
 
-  const getClient = supabaseFactory
-    ? supabaseFactory
-    : async () => {
-        const { createServerSupabaseClient } = await import("@/lib/supabase/server");
-        return await createServerSupabaseClient();
-      };
+  return response.json();
+}
 
-  const supabase = await getClient();
-
-  if (!supabase) {
-    return { error: "Supabase not configured" };
-  }
-
-  const { error } = await supabase
-    .from("waitlist_signups")
-    .insert({ email: payload.email, source: payload.source ?? "web" });
-
-  if (error) {
-    return { error: error.message };
-  }
-
-  return {};
+export async function addToWaitlist(input: WaitlistInput) {
+  return saveWaitlistEntry(input);
 }
