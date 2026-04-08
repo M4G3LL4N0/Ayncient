@@ -2,10 +2,6 @@
 > ayncient@0.1.0 build
 > next build
 
- ⚠ Invalid next.config.js options detected: 
- ⚠     Expected object, received boolean at "experimental.serverActions"
- ⚠ See more info here: https://nextjs.org/docs/messages/invalid-next-config
- ⚠ Server Actions are available by default now, `experimental.serverActions` option can be safely removed.
    ▲ Next.js 14.1.0
 
    Creating an optimized production build ...
