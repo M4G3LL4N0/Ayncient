@@ -1,4 +1,15 @@
-export default function DashboardPage() {
+import { redirect } from "next/navigation";
+import { createServerSupabaseClient } from "@/lib/supabase/server";
+
+export default async function DashboardPage() {
+  const supabase = createServerSupabaseClient();
+  const {
+    data: { session },
+  } = await supabase.auth.getSession();
+
+  if (!session) {
+    redirect("/");
+  }
   return (
     <main className="min-h-screen px-6 py-10">
       <div className="mx-auto max-w-6xl">
