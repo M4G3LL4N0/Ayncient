@@ -58,6 +58,8 @@ body {
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   background: var(--card);
   border: 1px solid var(--border);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 }
 
 .card:hover {
