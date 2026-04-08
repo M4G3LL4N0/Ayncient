@@ -8,7 +8,7 @@ import { Waitlist } from "@/components/waitlist";
 
 export default function HomePage() {
   return (
-    <main className="space-y-32 md:space-y-36 lg:space-y-40">
+    <main className="space-y-24 md:space-y-28 lg:space-y-32">
       <Navbar />
       <Hero />
       <Philosophy />
