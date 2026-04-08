@@ -8,9 +8,13 @@ export function Hero() {
         <div className="grid items-center gap-20 lg:grid-cols-[1fr_1fr] lg:gap-24">
           <div>
             <div className="eyebrow mb-6 opacity-80">THE MODERN HUMAN CONDITION</div>
-            <h1 className="mb-10 max-w-3xl text-5xl md:text-6xl font-bold leading-tight tracking-tight text-gradient">
-              <span className="block">Optimized biology.</span>
-              <span className="block">Human design.</span>
+            <h1 className="mb-10 max-w-3xl text-5xl md:text-6xl font-bold leading-tight tracking-tight">
+              <span className="block bg-gradient-to-r from-cta-primary to-cta-secondary bg-clip-text text-transparent">
+                Optimized biology.
+              </span>
+              <span className="block bg-gradient-to-r from-cta-secondary to-cta-primary bg-clip-text text-transparent">
+                Human design.
+              </span>
             </h1>
             <p className="max-w-2xl text-lg leading-relaxed text-[#d9c9ac] mb-8">
               Ayncient intelligently reconnects modern life with evolutionary necessities.
@@ -20,10 +24,11 @@ export function Hero() {
             <div className="mb-8 flex flex-wrap gap-4">
               <Link 
                 href="/quiz" 
-                className="btn-primary group flex items-center gap-3 hover:from-cta-secondary hover:to-cta-primary transition-all duration-200"
+                className="btn-primary group flex items-center gap-3 hover:from-cta-secondary hover:to-cta-primary transition-all duration-200 relative overflow-hidden"
               >
-                <span className="tracking-tight">Start With Your Score</span>
-                <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" />
+                <span className="relative z-10 tracking-tight">Start With Your Score</span>
+                <ArrowRight size={18} className="relative z-10 transition-transform group-hover:translate-x-1" />
+                <div className="absolute inset-0 bg-gradient-to-r from-cta-primary to-cta-secondary opacity-100 group-hover:opacity-90 transition-opacity"></div>
               </Link>
               <a href="#waitlist" className="btn-secondary hover:bg-white/10">
                 Join Waitlist
