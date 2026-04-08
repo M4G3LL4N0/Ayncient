@@ -9,6 +9,8 @@
   --card-hover: rgba(255,255,255,0.03);
   --gradient-primary: #4ade80;
   --gradient-secondary: #3b82f6;
+  --cta-primary: var(--gradient-primary);
+  --cta-secondary: var(--gradient-secondary);
 }
 
 html {
@@ -58,9 +60,10 @@ body {
 
 .card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 12px 24px rgba(0,0,0,0.2);
+  box-shadow: 0 20px 25px -5px rgba(0,0,0,0.3), 0 8px 10px -6px rgba(0,0,0,0.2);
   background: var(--card-hover);
   border-color: rgba(255,255,255,0.12);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 * {
@@ -72,6 +75,17 @@ a {
   text-decoration: none;
 }
 
-button {
+button, .btn-primary, .btn-secondary {
   cursor: pointer;
+  transition: all 0.2s ease-out;
+}
+
+.btn-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 6px -1px rgba(0,0,0,0.2);
+}
+
+.btn-secondary:hover {
+  transform: translateY(-1px);
+  background: rgba(255,255,255,0.15);
 }

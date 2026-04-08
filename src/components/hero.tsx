@@ -3,7 +3,7 @@ import { ArrowRight } from "lucide-react";
 
 export function Hero() {
   return (
-    <section className="relative overflow-hidden pt-24 pb-28 md:pt-32 md:pb-36 lg:pt-40 lg:pb-44 animate-fadeIn">
+    <section className="relative overflow-hidden pt-28 pb-32 md:pt-36 md:pb-40 lg:pt-44 lg:pb-48 animate-fadeIn">
       <div className="container relative z-10">
         <div className="grid items-center gap-20 lg:grid-cols-[1fr_1fr] lg:gap-24">
           <div>
