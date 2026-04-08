@@ -100,8 +100,9 @@ export function Hero() {
       </div>
 
       {/* Background gradient */}
-      <div className="absolute inset-0 -z-10 bg-gradient-to-r from-cta-primary/20 via-cta-secondary/15 to-transparent"></div>
+      <div className="absolute inset-0 -z-10 bg-gradient-to-r from-cta-primary/20 via-cta-secondary/15 to-transparent animate-gradient-x"></div>
       <div className="absolute inset-0 -z-20 bg-gradient-to-b from-black/50 to-black/80"></div>
+      <div className="absolute inset-0 -z-30 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-transparent via-black/80 to-black"></div>
     </section>
   );
 }
