@@ -11,6 +11,7 @@
   --gradient-secondary: #3b82f6;
   --cta-primary: var(--gradient-primary);
   --cta-secondary: var(--gradient-secondary);
+  --glow: radial-gradient(circle at center, rgba(74,222,128,0.15) 0%, transparent 70%);
 }
 
 html {
@@ -64,6 +65,26 @@ body {
   background: var(--card-hover);
   border-color: rgba(255,255,255,0.12);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.card:hover::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--glow);
+  pointer-events: none;
+  animation: glow-pulse 3s ease-in-out infinite;
+}
+
+@keyframes glow-pulse {
+  0% { opacity: 0.3; }
+  50% { opacity: 0.6; }
+  100% { opacity: 0.3; }
 }
 
 * {
