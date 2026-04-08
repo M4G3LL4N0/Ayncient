@@ -3,9 +3,9 @@ import { ArrowRight } from "lucide-react";
 
 export function Hero() {
   return (
-    <section className="relative overflow-hidden pt-32 pb-40 md:pt-40 md:pb-48 lg:pt-48 lg:pb-56 animate-fadeIn">
+    <section className="relative overflow-hidden pt-36 pb-44 md:pt-44 md:pb-52 lg:pt-52 lg:pb-60 animate-fadeIn">
       <div className="container relative z-10">
-        <div className="grid items-center gap-20 lg:grid-cols-[1fr_1fr] lg:gap-24">
+        <div className="grid items-center gap-24 lg:grid-cols-[1fr_1fr] lg:gap-28">
           <div>
             <div className="eyebrow mb-6 opacity-80">THE MODERN HUMAN CONDITION</div>
             <h1 className="mb-12 max-w-3xl text-5xl md:text-6xl lg:text-7xl font-bold leading-tight tracking-tight">
