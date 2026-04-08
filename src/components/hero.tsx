@@ -3,12 +3,12 @@ import { ArrowRight } from "lucide-react";
 
 export function Hero() {
   return (
-    <section className="relative overflow-hidden pt-28 pb-32 md:pt-36 md:pb-40 lg:pt-44 lg:pb-48 animate-fadeIn">
+    <section className="relative overflow-hidden pt-32 pb-40 md:pt-40 md:pb-48 lg:pt-48 lg:pb-56 animate-fadeIn">
       <div className="container relative z-10">
         <div className="grid items-center gap-20 lg:grid-cols-[1fr_1fr] lg:gap-24">
           <div>
             <div className="eyebrow mb-6 opacity-80">THE MODERN HUMAN CONDITION</div>
-            <h1 className="mb-10 max-w-3xl text-5xl md:text-6xl font-bold leading-tight tracking-tight">
+            <h1 className="mb-12 max-w-3xl text-5xl md:text-6xl lg:text-7xl font-bold leading-tight tracking-tight">
               <span className="block bg-gradient-to-r from-cta-primary to-cta-secondary bg-clip-text text-transparent animate-gradient-x">
                 Optimized biology.
               </span>
