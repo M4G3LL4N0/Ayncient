@@ -3,12 +3,12 @@ import { ArrowRight } from "lucide-react";
 
 export function Hero() {
   return (
-    <section className="relative overflow-hidden pt-20 pb-24 md:pt-28 md:pb-32 lg:pt-32 lg:pb-36">
+    <section className="relative overflow-hidden pt-24 pb-28 md:pt-32 md:pb-36 lg:pt-40 lg:pb-44">
       <div className="container relative z-10">
-        <div className="grid items-center gap-16 lg:grid-cols-[1fr_1fr] lg:gap-20">
+        <div className="grid items-center gap-20 lg:grid-cols-[1fr_1fr] lg:gap-24">
           <div>
             <div className="eyebrow mb-6 opacity-80">THE MODERN HUMAN CONDITION</div>
-            <h1 className="mb-8 max-w-3xl text-4xl md:text-5xl font-bold leading-tight tracking-tight text-gradient">
+            <h1 className="mb-10 max-w-3xl text-5xl md:text-6xl font-bold leading-tight tracking-tight text-gradient">
               <span className="block">Optimized biology.</span>
               <span className="block">Human design.</span>
             </h1>
@@ -17,7 +17,7 @@ export function Hero() {
               Measure and master sleep, light, movement, nutrition, stress, and circadian rhythm.
             </p>
 
-            <div className="mb-6 flex flex-wrap gap-4">
+            <div className="mb-8 flex flex-wrap gap-4">
               <Link 
                 href="/quiz" 
                 className="btn-primary group flex items-center gap-3 hover:from-cta-secondary hover:to-cta-primary transition-all duration-200"
@@ -37,8 +37,8 @@ export function Hero() {
             </div>
           </div>
 
-          <div className="card p-6 md:p-8 relative overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-r from-cta-primary/10 to-cta-secondary/5 opacity-50"></div>
+          <div className="card p-8 md:p-10 relative overflow-hidden">
+            <div className="absolute inset-0 bg-gradient-to-r from-cta-primary/10 to-cta-secondary/5 opacity-60"></div>
             <div className="relative z-10">
               <div className="eyebrow mb-4">Alignment preview</div>
               <div className="rounded-[24px] border border-white/8 bg-black/20 p-6 backdrop-blur-sm">
@@ -95,7 +95,8 @@ export function Hero() {
       </div>
 
       {/* Background gradient */}
-      <div className="absolute inset-0 -z-10 bg-gradient-to-r from-cta-primary/20 via-cta-secondary/10 to-transparent"></div>
+      <div className="absolute inset-0 -z-10 bg-gradient-to-r from-cta-primary/20 via-cta-secondary/15 to-transparent"></div>
+      <div className="absolute inset-0 -z-20 bg-gradient-to-b from-black/50 to-black/80"></div>
     </section>
   );
 }
