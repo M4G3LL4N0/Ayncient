@@ -3,7 +3,7 @@ import { ArrowRight } from "lucide-react";
 
 export function Hero() {
   return (
-    <section className="relative overflow-hidden pt-24 pb-28 md:pt-32 md:pb-36 lg:pt-40 lg:pb-44">
+    <section className="relative overflow-hidden pt-24 pb-28 md:pt-32 md:pb-36 lg:pt-40 lg:pb-44 animate-fadeIn">
       <div className="container relative z-10">
         <div className="grid items-center gap-20 lg:grid-cols-[1fr_1fr] lg:gap-24">
           <div>
@@ -37,11 +37,11 @@ export function Hero() {
             </div>
           </div>
 
-          <div className="card p-8 md:p-10 relative overflow-hidden">
+          <div className="card p-8 md:p-10 relative overflow-hidden hover:shadow-xl">
             <div className="absolute inset-0 bg-gradient-to-r from-cta-primary/10 to-cta-secondary/5 opacity-60"></div>
             <div className="relative z-10">
               <div className="eyebrow mb-4">Alignment preview</div>
-              <div className="rounded-[24px] border border-white/8 bg-black/20 p-6 backdrop-blur-sm">
+              <div className="rounded-[24px] border border-white/8 bg-black/20 p-6 backdrop-blur-sm hover:border-white/12 transition-all">
                 <div className="subtle text-sm">Today's score</div>
                 <div className="mt-2 text-6xl font-bold tracking-[-0.05em] text-gradient">
                   74
