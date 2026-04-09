@@ -3,12 +3,12 @@ import { ArrowRight } from "lucide-react";
 
 export function Hero() {
   return (
-    <section className="relative overflow-hidden pt-32 pb-40 md:pt-40 md:pb-48 lg:pt-48 lg:pb-56 animate-fadeIn bg-gradient-to-b from-black/30 via-black/50 to-black/80">
+    <section className="relative overflow-hidden pt-36 pb-44 md:pt-44 md:pb-52 lg:pt-52 lg:pb-60 animate-fadeIn bg-gradient-to-b from-black/30 via-black/50 to-black/80">
       <div className="container relative z-10">
         <div className="grid items-center gap-24 lg:grid-cols-[1fr_1fr] lg:gap-28">
           <div>
-            <div className="eyebrow mb-6 opacity-80">THE MODERN HUMAN CONDITION</div>
-            <h1 className="mb-12 max-w-3xl text-5xl md:text-6xl lg:text-7xl font-bold leading-tight tracking-tight">
+            <div className="eyebrow mb-6 opacity-80 tracking-widest">THE MODERN HUMAN CONDITION</div>
+            <h1 className="mb-12 max-w-3xl text-5xl md:text-6xl lg:text-7xl font-bold leading-tight tracking-tighter">
               <span className="block bg-gradient-to-r from-cta-primary to-cta-secondary bg-clip-text text-transparent animate-gradient-x">
                 Optimized biology.
               </span>
@@ -17,16 +17,16 @@ export function Hero() {
               </span>
             </h1>
             <div className="absolute inset-0 pointer-events-none overflow-hidden">
-              <div className="absolute top-[20%] left-[10%] w-64 h-64 bg-gradient-to-r from-cta-primary/10 to-cta-secondary/5 rounded-full blur-3xl opacity-40 animate-float animation-delay-500"></div>
-              <div className="absolute top-[40%] right-[15%] w-48 h-48 bg-gradient-to-r from-cta-secondary/10 to-cta-primary/5 rounded-full blur-2xl opacity-30 animate-float animation-delay-2000"></div>
-              <div className="absolute bottom-[10%] left-[50%] w-96 h-96 bg-gradient-to-r from-cta-secondary/5 to-cta-primary/10 rounded-full blur-3xl opacity-20 animate-float animation-delay-3500 scale-150"></div>
+              <div className="absolute top-[15%] left-[10%] w-72 h-72 bg-gradient-to-r from-cta-primary/12 to-cta-secondary/8 rounded-full blur-3xl opacity-50 animate-float animation-delay-500"></div>
+              <div className="absolute top-[35%] right-[10%] w-56 h-56 bg-gradient-to-r from-cta-secondary/12 to-cta-primary/8 rounded-full blur-2xl opacity-40 animate-float animation-delay-2000"></div>
+              <div className="absolute bottom-[5%] left-[50%] w-[28rem] h-[28rem] bg-gradient-to-r from-cta-secondary/8 to-cta-primary/12 rounded-full blur-[100px] opacity-30 animate-float animation-delay-3500 -translate-x-1/2"></div>
             </div>
             <p className="max-w-2xl text-lg leading-relaxed text-[#d9c9ac] mb-8">
               Ayncient intelligently reconnects modern life with evolutionary necessities.
               Measure and master sleep, light, movement, nutrition, stress, and circadian rhythm.
             </p>
 
-            <div className="mb-8 flex flex-wrap gap-4">
+            <div className="mb-8 flex flex-wrap gap-3">
               <Link 
                 href="/quiz" 
                 className="btn-primary group flex items-center gap-3 hover:from-cta-secondary hover:to-cta-primary transition-all duration-200 relative overflow-hidden rounded-lg"
