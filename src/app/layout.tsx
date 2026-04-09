@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { SupabaseProvider } from "@/lib/supabase-provider";
+import { ErrorBoundary } from "@/components/error-boundary";
 
 export const metadata: Metadata = {
   title: "Ayncient — Live as designed.",
@@ -16,7 +17,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="min-w-[320px] overflow-x-hidden">
-        <SupabaseProvider>{children}</SupabaseProvider>
+        <ErrorBoundary>
+          <SupabaseProvider>{children}</SupabaseProvider>
+        </ErrorBoundary>
       </body>
     </html>
   );
