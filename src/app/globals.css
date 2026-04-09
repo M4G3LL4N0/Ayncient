@@ -63,13 +63,13 @@ body {
 }
 
 .card:hover {
-  transform: translateY(-6px) scale(1.02);
+  transform: translateY(-8px) scale(1.03);
   box-shadow: 
-    0 24px 48px -12px rgba(0,0,0,0.3),
-    0 12px 24px -8px rgba(0,0,0,0.15),
-    0 0 0 1px rgba(255,255,255,0.15);
+    0 28px 56px -14px rgba(0,0,0,0.35),
+    0 14px 28px -10px rgba(0,0,0,0.2),
+    0 0 0 1px rgba(255,255,255,0.2);
   background: var(--card-hover);
-  border-color: rgba(255,255,255,0.15);
+  border-color: rgba(255,255,255,0.2);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   overflow: hidden;
