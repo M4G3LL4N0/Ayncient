@@ -6,7 +6,7 @@ interface DashboardShellProps {
   title?: string;
 }
 
-export default function DashboardShell({ children, title }: DashboardShellProps) {
+export function DashboardShell({ children, title }: DashboardShellProps) {
   return (
     <div className="min-h-screen bg-gray-50">
       <DashboardHeader />
