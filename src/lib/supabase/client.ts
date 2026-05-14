@@ -10,5 +10,9 @@ export function createBrowserSupabaseClient() {
     return null;
   }
 
-  return createSupabaseBrowserClient(supabaseUrl, supabaseAnonKey);
+  return createSupabaseBrowserClient(supabaseUrl, supabaseAnonKey, {
+    db: {
+      schema: "ayncient",
+    },
+  });
 }

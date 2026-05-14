@@ -1,67 +1,87 @@
 "use client";
 
 import { useState } from "react";
-import { Check } from "lucide-react";
-import { addToWaitlist } from "@/domain/waitlist/service";
 
 export function Waitlist() {
   const [email, setEmail] = useState("");
   const [submitted, setSubmitted] = useState(false);
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    if (!email.trim()) return;
+
+    setIsLoading(true);
     setError("");
-    setIsSubmitting(true);
 
     try {
-      await addToWaitlist({
-        email,
-        source: "site",
+      const res = await fetch("/api/waitlist", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, source: "homepage" }),
       });
+
+      if (!res.ok) {
+        throw new Error("Waitlist is not configured yet.");
+      }
+
       setSubmitted(true);
       setEmail("");
     } catch (err) {
       setError(err instanceof Error ? err.message : "Something went wrong.");
     } finally {
-      setIsSubmitting(false);
+      setIsLoading(false);
     }
   }
 
   return (
-    <div className="rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur">
-      <h3 className="text-xl font-semibold">Join the waitlist</h3>
-      <p className="mt-2 text-sm text-neutral-400">
-        Get early access when Ayncient opens.
-      </p>
+    <section id="waitlist" className="py-28">
+      <div className="mx-auto max-w-7xl px-6">
+        <div className="rounded-[2rem] border border-white/5 bg-white/[0.04] p-8 md:p-12">
+          <div className="mb-4 text-xs uppercase tracking-[0.35em] text-[#C6A56B]">
+            Early Access
+          </div>
+          <h2 className="max-w-3xl text-4xl font-semibold tracking-[-0.05em] text-[#F5E9D8] md:text-5xl">
+            Start your return to human.
+          </h2>
+          <p className="mt-5 max-w-2xl text-lg leading-8 text-[#A7957C]">
+            Join the early list for the Ayncient app, Alignment Score, 7-Day Reset,
+            protocols, dashboard, and future biological alignment tools.
+          </p>
 
-      <form onSubmit={handleSubmit} className="mt-6 flex flex-col gap-3 sm:flex-row">
-        <input
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          placeholder="Enter your email"
-          required
-          className="min-w-0 flex-1 rounded-xl border border-white/10 bg-black/20 px-4 py-3 text-sm outline-none placeholder:text-neutral-500"
-        />
-        <button
-          type="submit"
-          disabled={isSubmitting}
-          className="rounded-xl border border-white/10 bg-white/10 px-5 py-3 text-sm font-medium transition hover:bg-white/15 disabled:opacity-60"
-        >
-          {isSubmitting ? "Joining..." : "Join"}
-        </button>
-      </form>
+          <form onSubmit={handleSubmit} className="mt-8 flex max-w-2xl flex-col gap-4 md:flex-row">
+            <input
+              type="email"
+              required
+              value={email}
+              disabled={isLoading}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="Enter your email"
+              className="h-14 flex-1 rounded-full border border-white/10 bg-black/20 px-5 text-[#F5E9D8] outline-none placeholder:text-[#7B6B57]"
+            />
+            <button
+              type="submit"
+              disabled={isLoading}
+              className="h-14 rounded-full bg-[#C6A56B] px-8 text-sm font-semibold text-[#1B140C] disabled:opacity-60"
+            >
+              {isLoading ? "Joining..." : "Join Waitlist"}
+            </button>
+          </form>
 
-      {submitted && (
-        <p className="mt-4 text-sm text-[#d79342]">
-          <Check size={18} className="mr-2 inline" />
-          You're on the waitlist. We'll be in touch soon.
-        </p>
-      )}
+          {submitted && (
+            <p className="mt-4 text-sm text-[#C6A56B]">
+              You&apos;re on the list.
+            </p>
+          )}
 
-      {error && <p className="mt-4 text-sm text-red-400">{error}</p>}
-    </div>
+          {error && (
+            <p className="mt-4 text-sm text-red-300">
+              {error}
+            </p>
+          )}
+        </div>
+      </div>
+    </section>
   );
 }

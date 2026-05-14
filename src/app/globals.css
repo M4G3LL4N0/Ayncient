@@ -1,17 +1,14 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 :root {
-  --background: #08110d;
-  --foreground: #f5f7f2;
-  --muted: #9aa79e;
-  --card: #101915;
-  --border: rgba(255,255,255,0.08);
-  --card-hover: rgba(255,255,255,0.03);
-  --gradient-primary: #4ade80;
-  --gradient-secondary: #3b82f6;
-  --cta-primary: var(--gradient-primary);
-  --cta-secondary: var(--gradient-secondary);
-  --glow: radial-gradient(circle at center, rgba(74,222,128,0.15) 0%, transparent 70%);
+  --background: #0a0907;
+  --foreground: #f5e9d8;
+}
+
+* {
+  box-sizing: border-box;
 }
 
 html {
@@ -19,106 +16,10 @@ html {
 }
 
 body {
-  min-height: 100vh;
-  background:
-    radial-gradient(circle at top, rgba(34, 197, 94, 0.12), transparent 35%),
-    radial-gradient(circle at 20% 80%, rgba(59, 130, 246, 0.08), transparent 50%),
-    linear-gradient(180deg, #08110d 0%, #0b1510 100%);
+  margin: 0;
+  background: var(--background);
   color: var(--foreground);
-  background-attachment: fixed;
-  scroll-behavior: smooth;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-rendering: optimizeLegibility;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes gradient-x {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-}
-
-.animate-gradient-x {
-  animation: gradient-x 15s ease infinite;
-  background-size: 200% 200%;
-}
-
-.card {
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  background: var(--card);
-  border: 1px solid var(--border);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-}
-
-.card:hover {
-  transform: translateY(-8px) scale(1.03);
-  box-shadow: 
-    0 28px 56px -14px rgba(0,0,0,0.35),
-    0 14px 28px -10px rgba(0,0,0,0.2),
-    0 0 0 1px rgba(255,255,255,0.2);
-  background: var(--card-hover);
-  border-color: rgba(255,255,255,0.2);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  position: relative;
-  overflow: hidden;
-  z-index: 1;
-  backdrop-filter: blur(12px);
-}
-
-.card:hover::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: radial-gradient(circle at center, rgba(74,222,128,0.1) 0%, transparent 70%);
-  pointer-events: none;
-  animation: glow-pulse 3s ease-in-out infinite;
-}
-
-.card:hover::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: var(--glow);
-  pointer-events: none;
-  animation: glow-pulse 3s ease-in-out infinite;
-}
-
-@keyframes glow-pulse {
-  0% { opacity: 0.3; }
-  50% { opacity: 0.6; }
-  100% { opacity: 0.3; }
-}
-
-@keyframes float {
-  0% { transform: translateY(0) rotate(0deg); }
-  50% { transform: translateY(-20px) rotate(2deg); }
-  100% { transform: translateY(0) rotate(0deg); }
-}
-
-.animate-float {
-  animation: float 6s ease-in-out infinite;
-}
-
-* {
-  border-color: var(--border);
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 
 a {
@@ -126,18 +27,6 @@ a {
   text-decoration: none;
 }
 
-button, .btn-primary, .btn-secondary {
-  cursor: pointer;
-  transition: all 0.2s ease-out;
-}
-
-.btn-primary:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 15px -3px rgba(0,0,0,0.25);
-}
-
-.btn-secondary:hover {
-  transform: translateY(-2px);
-  background: rgba(255,255,255,0.18);
-  box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+::selection {
+  background: rgba(198, 165, 107, 0.35);
 }

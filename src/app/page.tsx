@@ -1,17 +1,17 @@
-import { Footer } from "@/components/footer";
-import { Hero } from "@/components/hero";
-import { Navbar } from "@/components/navbar";
-import { FeatureGrid } from "@/components/feature-grid";
-import { Philosophy } from "@/components/philosophy";
-import { ProtocolSection } from "@/components/protocol-section";
+import { Navbar } from "@/components/layout/navbar";
+import { Footer } from "@/components/layout/footer";
+import { HeroSection } from "@/components/sections/hero-section";
+import { PhilosophySection } from "@/components/sections/philosophy-section";
+import { FeatureGrid } from "@/components/sections/feature-grid";
+import { ProtocolSection } from "@/components/sections/protocol-section";
 import { Waitlist } from "@/components/waitlist";
 
 export default function HomePage() {
   return (
-    <main className="space-y-24 md:space-y-28 lg:space-y-32">
+    <main className="min-h-screen bg-[#0A0907] text-[#F5E9D8]">
       <Navbar />
-      <Hero />
-      <Philosophy />
+      <HeroSection />
+      <PhilosophySection />
       <FeatureGrid />
       <ProtocolSection />
       <Waitlist />

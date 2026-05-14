@@ -1,0 +1,64 @@
+{
+  "prioritized_tasks": [
+    {
+      "priority": 1,
+      "task": "stabilize dashboard",
+      "status": "in_progress",
+      "notes": "Dashboard routes compile. Next step is connecting real data and empty/loading/error states."
+    },
+    {
+      "priority": 2,
+      "task": "connect Supabase schema",
+      "status": "next",
+      "notes": "All clients must use schema ayncient in shared core-prod. Confirm tables and RLS."
+    },
+    {
+      "priority": 3,
+      "task": "improve quiz onboarding",
+      "status": "next",
+      "notes": "Strengthen result flow, persistence, and waitlist handoff."
+    },
+    {
+      "priority": 4,
+      "task": "connect daily check-ins",
+      "status": "next",
+      "notes": "Align payload with daily_checkins table and authenticated user ownership."
+    },
+    {
+      "priority": 5,
+      "task": "connect protocols",
+      "status": "next",
+      "notes": "Replace presentational cards with durable protocol content and user progress."
+    },
+    {
+      "priority": 6,
+      "task": "connect journal",
+      "status": "next",
+      "notes": "Persist entries, associate with user, add saved states."
+    },
+    {
+      "priority": 7,
+      "task": "add auth",
+      "status": "later",
+      "notes": "Add a deliberate auth flow before expanding private dashboard features."
+    },
+    {
+      "priority": 8,
+      "task": "add Stripe later",
+      "status": "later",
+      "notes": "Do not prioritize payments until product flow and auth are stable."
+    },
+    {
+      "priority": 9,
+      "task": "polish mobile",
+      "status": "later",
+      "notes": "Audit dashboard, quiz, and reset on small screens."
+    },
+    {
+      "priority": 10,
+      "task": "improve SEO",
+      "status": "later",
+      "notes": "Add richer metadata, Open Graph, and route-specific titles."
+    }
+  ]
+}

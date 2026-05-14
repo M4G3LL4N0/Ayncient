@@ -1,0 +1,107 @@
+{
+  "project_folder": "ayncient",
+  "startup_name": "Ayncient",
+  "category": "biological alignment wellness operating system",
+  "stage": "recovered MVP foundation, build green, manual deploy ready",
+  "target_users": [
+    "health-conscious adults seeking more natural daily rhythm",
+    "people improving sleep, sunlight, movement, food, hydration, stress, nature exposure, and connection",
+    "early adopters of ancestral-health and human-alignment products"
+  ],
+  "core_problem": "Modern life pulls people away from the biological rhythms and inputs humans are designed for, creating low energy, poor sleep, stress, disconnection, and inconsistent habits.",
+  "core_solution": "Ayncient gives users a premium alignment system with an onboarding quiz, reset protocol, dashboard, daily check-ins, protocols, and journaling to help them return to human-compatible rhythm.",
+  "mvp_scope": [
+    "homepage",
+    "alignment quiz",
+    "quiz result saving",
+    "waitlist",
+    "7-Day Reset",
+    "dashboard",
+    "daily check-in",
+    "protocols",
+    "journal"
+  ],
+  "website_routes": [
+    "/",
+    "/quiz",
+    "/reset",
+    "/dashboard",
+    "/dashboard/check-in",
+    "/dashboard/protocols",
+    "/dashboard/journal",
+    "/api/waitlist",
+    "/api/save-result"
+  ],
+  "product_flows": [
+    "visitor reads homepage and joins waitlist",
+    "visitor takes alignment quiz and saves result",
+    "user completes 7-Day Reset",
+    "user opens dashboard and records daily check-in",
+    "user reviews protocols and writes journal entries"
+  ],
+  "design_system": {
+    "brand_direction": "premium earthy ancestral-health and human-alignment",
+    "visual_language": "grounded dark surfaces, warm off-white text, muted gold accents, plant-toned secondary colors",
+    "avoid": [
+      "generic SaaS dashboards",
+      "template startup copy",
+      "public-facing automation language",
+      "loud synthetic gradients as the core brand"
+    ]
+  },
+  "technical_stack": {
+    "framework": "Next.js App Router",
+    "language": "TypeScript",
+    "package_manager": "pnpm only",
+    "database": "Supabase shared project core-prod",
+    "database_schema": "ayncient",
+    "supabase_client_rule": "createClient(url, key, { db: { schema: \"ayncient\" } })",
+    "deployment": "manual Vercel deploy only"
+  },
+  "important_files": [
+    "src/app/page.tsx",
+    "src/app/quiz/page.tsx",
+    "src/app/reset/page.tsx",
+    "src/app/dashboard/page.tsx",
+    "src/app/dashboard/check-in/page.tsx",
+    "src/app/dashboard/protocols/page.tsx",
+    "src/app/dashboard/journal/page.tsx",
+    "src/app/api/waitlist/route.ts",
+    "src/app/api/save-result/route.ts",
+    "src/components/dashboard/dashboard-shell.tsx",
+    "src/lib/supabase/client.ts",
+    "src/lib/supabase/server.ts",
+    "src/lib/supabase.ts",
+    "RECOVERY_NOTES.md",
+    ".autobuilder/project-state.json",
+    ".autobuilder/next-actions.json",
+    ".autobuilder/guardrails.md"
+  ],
+  "do_not_rules": [
+    "Do not turn Ayncient into generic SaaS.",
+    "Do not expose internal Autobuilder automation publicly.",
+    "Do not use the public Supabase schema.",
+    "Do not use npm or package-lock.json.",
+    "Do not auto-deploy.",
+    "Do not delete source code during recovery.",
+    "Do not remove quiz, dashboard, protocols, reset, journal, or waitlist."
+  ],
+  "cleanup_policy": [
+    "Keep generated build output ignored.",
+    "Keep node_modules, .next, dist, build, coverage, reports, cache folders, logs, and local env files out of git.",
+    "Preserve displaced source under .autobuilder/legacy-* when route conflicts require moving it out of the Next app tree.",
+    "Use pnpm install and pnpm build for validation."
+  ],
+  "next_priorities": [
+    "stabilize dashboard",
+    "connect Supabase schema",
+    "improve quiz onboarding",
+    "connect daily check-ins",
+    "connect protocols",
+    "connect journal",
+    "add auth",
+    "add Stripe later",
+    "polish mobile",
+    "improve SEO"
+  ]
+}
