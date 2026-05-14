@@ -2,23 +2,20 @@ import Link from "next/link";
 
 export function Navbar() {
   return (
-    <header className="sticky top-0 z-50 border-b border-white/5 bg-[#0A0907]/85 backdrop-blur-xl">
-      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6">
-        <Link href="/" className="text-sm font-semibold tracking-[0.35em] text-[#E8D7BE]">
+    <header className="sticky top-0 z-50 border-b border-white/5 bg-[#080705]/80 backdrop-blur-xl">
+      <div className="container flex h-16 items-center justify-between">
+        <Link href="/" className="text-sm font-black tracking-[0.36em] text-[#f6ead8]">
           AYNCIENT
         </Link>
 
-        <nav className="hidden items-center gap-8 text-sm text-[#BCA98A] md:flex">
-          <a href="#philosophy" className="transition hover:text-white">Philosophy</a>
-          <a href="#system" className="transition hover:text-white">System</a>
-          <a href="#protocols" className="transition hover:text-white">Reset</a>
-          <a href="#waitlist" className="transition hover:text-white">Waitlist</a>
+        <nav className="hidden items-center gap-7 text-sm text-[#b9a68a] md:flex">
+          <a href="#philosophy" className="hover:text-white">Philosophy</a>
+          <a href="#system" className="hover:text-white">System</a>
+          <a href="#reset" className="hover:text-white">Reset</a>
+          <Link href="/dashboard" className="hover:text-white">Dashboard</Link>
         </nav>
 
-        <Link
-          href="/quiz"
-          className="rounded-full border border-[#C6A56B]/40 bg-[#C6A56B]/10 px-5 py-2 text-sm font-medium text-[#F4DFC1] transition hover:bg-[#C6A56B]/20"
-        >
+        <Link href="/quiz" className="btn-primary min-h-10 px-5 text-sm">
           Take Quiz
         </Link>
       </div>

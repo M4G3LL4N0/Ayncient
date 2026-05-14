@@ -5,25 +5,25 @@ import { useState } from "react";
 export function Waitlist() {
   const [email, setEmail] = useState("");
   const [submitted, setSubmitted] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
-  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault();
+  async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
     if (!email.trim()) return;
 
-    setIsLoading(true);
+    setLoading(true);
     setError("");
 
     try {
-      const res = await fetch("/api/waitlist", {
+      const response = await fetch("/api/waitlist", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, source: "homepage" }),
       });
 
-      if (!res.ok) {
-        throw new Error("Waitlist is not configured yet.");
+      if (!response.ok) {
+        throw new Error("Waitlist backend is not configured yet.");
       }
 
       setSubmitted(true);
@@ -31,21 +31,19 @@ export function Waitlist() {
     } catch (err) {
       setError(err instanceof Error ? err.message : "Something went wrong.");
     } finally {
-      setIsLoading(false);
+      setLoading(false);
     }
   }
 
   return (
-    <section id="waitlist" className="py-28">
-      <div className="mx-auto max-w-7xl px-6">
-        <div className="rounded-[2rem] border border-white/5 bg-white/[0.04] p-8 md:p-12">
-          <div className="mb-4 text-xs uppercase tracking-[0.35em] text-[#C6A56B]">
-            Early Access
-          </div>
-          <h2 className="max-w-3xl text-4xl font-semibold tracking-[-0.05em] text-[#F5E9D8] md:text-5xl">
+    <section id="waitlist" className="py-24">
+      <div className="container">
+        <div className="card p-8 md:p-12">
+          <div className="eyebrow mb-5">Early Access</div>
+          <h2 className="max-w-3xl text-4xl font-black leading-tight tracking-[-.05em] md:text-6xl">
             Start your return to human.
           </h2>
-          <p className="mt-5 max-w-2xl text-lg leading-8 text-[#A7957C]">
+          <p className="subtle mt-5 max-w-2xl text-lg leading-8">
             Join the early list for the Ayncient app, Alignment Score, 7-Day Reset,
             protocols, dashboard, and future biological alignment tools.
           </p>
@@ -55,31 +53,18 @@ export function Waitlist() {
               type="email"
               required
               value={email}
-              disabled={isLoading}
-              onChange={(e) => setEmail(e.target.value)}
+              disabled={loading}
+              onChange={(event) => setEmail(event.target.value)}
               placeholder="Enter your email"
-              className="h-14 flex-1 rounded-full border border-white/10 bg-black/20 px-5 text-[#F5E9D8] outline-none placeholder:text-[#7B6B57]"
+              className="h-14 flex-1 rounded-full border border-white/10 bg-black/25 px-5 text-[#f6ead8] outline-none placeholder:text-[#786a55]"
             />
-            <button
-              type="submit"
-              disabled={isLoading}
-              className="h-14 rounded-full bg-[#C6A56B] px-8 text-sm font-semibold text-[#1B140C] disabled:opacity-60"
-            >
-              {isLoading ? "Joining..." : "Join Waitlist"}
+            <button type="submit" disabled={loading} className="btn-primary">
+              {loading ? "Joining..." : "Join Waitlist"}
             </button>
           </form>
 
-          {submitted && (
-            <p className="mt-4 text-sm text-[#C6A56B]">
-              You&apos;re on the list.
-            </p>
-          )}
-
-          {error && (
-            <p className="mt-4 text-sm text-red-300">
-              {error}
-            </p>
-          )}
+          {submitted && <p className="mt-4 text-sm text-[#c8a15d]">You&apos;re on the list.</p>}
+          {error && <p className="mt-4 text-sm text-red-300">{error}</p>}
         </div>
       </div>
     </section>

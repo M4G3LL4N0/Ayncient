@@ -1,28 +1,25 @@
 export function PhilosophySection() {
   return (
-    <section id="philosophy" className="border-t border-white/5 bg-[#0D0C09] py-28">
-      <div className="mx-auto grid max-w-7xl gap-16 px-6 md:grid-cols-2">
+    <section id="philosophy" className="border-y border-white/5 bg-[#11100c]/70 py-24">
+      <div className="container grid gap-12 md:grid-cols-2">
         <div>
-          <div className="mb-4 text-xs uppercase tracking-[0.35em] text-[#C6A56B]">
-            Philosophy
-          </div>
-          <h2 className="text-4xl font-semibold tracking-[-0.05em] text-[#F5E9D8] md:text-5xl">
+          <div className="eyebrow mb-5">Philosophy</div>
+          <h2 className="text-4xl font-black leading-tight tracking-[-.05em] md:text-6xl">
             Modern life is biologically misaligned.
           </h2>
         </div>
 
-        <div className="space-y-6 text-lg leading-8 text-[#A7957C]">
+        <div className="space-y-5 text-lg leading-8 text-[#b9a68a]">
           <p>
-            Humans evolved outdoors, in motion, connected to sunlight, community,
-            natural food, and consistent daily rhythms.
+            Humans evolved outdoors, in motion, connected to light, food, tribe, weather,
+            sleep pressure, and natural daily rhythms.
           </p>
           <p>
-            Today we live indoors, under artificial light, overstimulated, sedentary,
-            sleep deprived, disconnected, and chronically stressed.
+            Today most people live indoors, under artificial light, overstimulated, sedentary,
+            sleep deprived, overfed, under-recovered, and disconnected from nature.
           </p>
           <p>
-            Ayncient is a practical system for returning to the biological conditions
-            that made humans resilient in the first place.
+            Ayncient turns ancestral principles into a modern system for daily alignment.
           </p>
         </div>
       </div>

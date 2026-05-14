@@ -8,7 +8,7 @@ import { Waitlist } from "@/components/waitlist";
 
 export default function HomePage() {
   return (
-    <main className="min-h-screen bg-[#0A0907] text-[#F5E9D8]">
+    <main>
       <Navbar />
       <HeroSection />
       <PhilosophySection />
