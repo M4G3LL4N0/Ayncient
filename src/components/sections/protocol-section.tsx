@@ -11,7 +11,7 @@ export function ProtocolSection() {
           </h2>
           <p className="subtle mt-6 text-lg leading-8">
             A guided reset across sleep, sunlight, movement, food, hydration, stress,
-            nature, and digital reduction. This is a habit frame, not medical advice.
+            nature, and digital reduction.
           </p>
         </div>
 
@@ -23,6 +23,7 @@ export function ProtocolSection() {
           ))}
         </div>
 
+        <p className="mt-8 text-sm text-white/45">Wellness habits. Not medical advice.</p>
         <Link href="/reset" className="btn-primary mt-10">
           View Reset
         </Link>
